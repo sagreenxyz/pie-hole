@@ -170,6 +170,7 @@ const drinks = ['Pepsi', 'Diet Pepsi', 'Mtn Dew', 'Mug Root Beer', 'Orange Crush
               <span class="price">$2.00 each</span>
             </li>
           </ul>
+          <a href="#toppings" class="toppings-link">See available toppings ↓</a>
         </div>
         <div class="pricing-card featured-price">
           <div class="pizza-size-badge gourmet-badge">12"</div>
@@ -194,6 +195,7 @@ const drinks = ['Pepsi', 'Diet Pepsi', 'Mtn Dew', 'Mug Root Beer', 'Orange Crush
               <span class="price">$2.50 each</span>
             </li>
           </ul>
+          <a href="#toppings" class="toppings-link">See available toppings ↓</a>
         </div>
         <div class="pricing-card featured-price">
           <div class="pizza-size-badge large-badge gourmet-badge">16"</div>
@@ -537,6 +539,22 @@ const drinks = ['Pepsi', 'Diet Pepsi', 'Mtn Dew', 'Mug Root Beer', 'Orange Crush
   .price {
     font-weight: 700;
     color: var(--color-red);
+  }
+
+  .toppings-link {
+    display: inline-block;
+    font-size: 0.8rem;
+    color: var(--color-red);
+    text-decoration: none;
+    font-weight: 600;
+    margin-top: auto;
+    padding-top: 0.4rem;
+    transition: color 0.2s;
+  }
+
+  .toppings-link:hover {
+    color: var(--color-red-dark);
+    text-decoration: underline;
   }
 
   .calzone-desc {

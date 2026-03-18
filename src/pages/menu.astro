@@ -131,6 +131,16 @@ const drinks = ['Pepsi', 'Diet Pepsi', 'Mtn Dew', 'Mug Root Beer', 'Orange Crush
 
   <div class="menu-wrapper">
 
+    <!-- ── PHONE-IN ORDER BANNER ── -->
+    <div class="order-how-to">
+      <div class="order-how-to-icon">📋</div>
+      <div class="order-how-to-text">
+        <strong>Build your phone-in order list!</strong>
+        Tap <em>"+ Add to Order List"</em> on any item below to add it to your list, then call us to place your order.
+        <a href={`${base}order-list`} class="order-how-to-link">View My Order List →</a>
+      </div>
+    </div>
+
     <!-- ── SALADS ── -->
     <section class="menu-section" id="salads">
       <div class="menu-section-header">
@@ -206,7 +216,10 @@ const drinks = ['Pepsi', 'Diet Pepsi', 'Mtn Dew', 'Mug Root Beer', 'Orange Crush
             </div>
           </div>
           <a href="#toppings" class="toppings-link">See available toppings ↓</a>
-        </div>
+          <div class="classic-order-btns">
+            <button class="add-order-btn add-order-btn--sm" data-name="Classic Pizza" data-category="Classic Pizza" data-size='12"' data-price="$16.00" data-price-num="16.00">+ Add 12" · $16</button>
+            <button class="add-order-btn add-order-btn--sm" data-name="Classic Pizza" data-category="Classic Pizza" data-size='16"' data-price="$18.00" data-price-num="18.00">+ Add 16" · $18</button>
+          </div>
         <div class="pricing-card featured-price">
           <div class="gourmet-size-badges">
             <span class="pizza-size-badge gourmet-badge">12"</span>
@@ -903,9 +916,66 @@ const drinks = ['Pepsi', 'Diet Pepsi', 'Mtn Dew', 'Mug Root Beer', 'Orange Crush
     }
   }
 
-  /* ── ADD TO ORDER BUTTONS ── */
-  .add-order-btn {
+  /* ── PHONE-IN ORDER HOW-TO BANNER ── */
+  .order-how-to {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: linear-gradient(135deg, var(--color-dark) 0%, var(--color-dark-brown) 100%);
+    color: #f0e6d3;
+    border-radius: var(--border-radius);
+    padding: 1rem 1.4rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    box-shadow: var(--shadow);
+  }
+
+  .order-how-to-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+  }
+
+  .order-how-to-text {
+    flex: 1;
+  }
+
+  .order-how-to-text strong {
+    color: var(--color-gold-light);
+    display: block;
+    margin-bottom: 0.15rem;
+    font-size: 1rem;
+  }
+
+  .order-how-to-text em {
+    color: #fff;
+    font-style: normal;
+    font-weight: 700;
+  }
+
+  .order-how-to-link {
     display: inline-block;
+    margin-left: 0.75rem;
+    color: var(--color-gold-light);
+    font-weight: 700;
+    text-decoration: underline;
+    white-space: nowrap;
+    transition: color 0.2s;
+  }
+
+  .order-how-to-link:hover {
+    color: #fff;
+  }
+
+  /* ── CLASSIC PIZZA ORDER BUTTONS ── */
+  .classic-order-btns {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+  }
+
+  /* ── ADD TO ORDER BUTTONS ── */
+  .add-order-btn {    display: inline-block;
     margin-top: 0.9rem;
     background-color: var(--color-red);
     color: #fff;

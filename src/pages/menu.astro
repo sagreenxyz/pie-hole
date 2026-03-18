@@ -172,12 +172,19 @@ const drinks = ['Pepsi', 'Diet Pepsi', 'Mtn Dew', 'Mug Root Beer', 'Orange Crush
           </ul>
         </div>
         <div class="pricing-card featured-price">
-          <div class="pizza-size-badge gourmet-badge">12"</div>
+          <div class="gourmet-size-badges">
+            <span class="pizza-size-badge gourmet-badge">12"</span>
+            <span class="pizza-size-badge gourmet-badge">16"</span>
+          </div>
           <h3>Gourmet Pizza</h3>
           <ul class="pricing-list">
             <li>
-              <span>Gourmet pie</span>
+              <span>12" Gourmet pie</span>
               <span class="price">$19.00</span>
+            </li>
+            <li>
+              <span>16" Gourmet pie</span>
+              <span class="price">$23.00</span>
             </li>
           </ul>
         </div>
@@ -192,16 +199,6 @@ const drinks = ['Pepsi', 'Diet Pepsi', 'Mtn Dew', 'Mug Root Beer', 'Orange Crush
             <li>
               <span>Extra toppings</span>
               <span class="price">$2.50 each</span>
-            </li>
-          </ul>
-        </div>
-        <div class="pricing-card featured-price">
-          <div class="pizza-size-badge large-badge gourmet-badge">16"</div>
-          <h3>Gourmet Pizza</h3>
-          <ul class="pricing-list">
-            <li>
-              <span>Gourmet pie</span>
-              <span class="price">$23.00</span>
             </li>
           </ul>
         </div>
@@ -455,7 +452,7 @@ const drinks = ['Pepsi', 'Diet Pepsi', 'Mtn Dew', 'Mug Root Beer', 'Orange Crush
   /* ── PRICING ── */
   .pricing-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 1.2rem;
   }
 
@@ -481,6 +478,12 @@ const drinks = ['Pepsi', 'Diet Pepsi', 'Mtn Dew', 'Mug Root Beer', 'Orange Crush
 
   .calzone-card, .bread-card {
     border-top-color: var(--color-gold);
+  }
+
+  .gourmet-size-badges {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
   }
 
   .pizza-size-badge {

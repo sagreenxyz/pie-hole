@@ -1,6 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
+const base = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : import.meta.env.BASE_URL + '/';
+
 const photos = {
   menuHero: 'https://images.squarespace-cdn.com/content/v1/57510c9a4d088e539edafc3d/1466570891382-BS45IRN4F18UKADEB7AN/IMG_3428.JPG?format=2500w',
   strip: [
@@ -141,6 +145,15 @@ const drinks = ['Pepsi', 'Diet Pepsi', 'Mtn Dew', 'Mug Root Beer', 'Orange Crush
               <span class="price-badge">{item.price}</span>
             </div>
             <p>{item.desc}</p>
+            <button
+              class="add-order-btn"
+              data-name={item.name}
+              data-category="Salad"
+              data-price={item.price}
+              data-price-num={item.price.replace('$', '')}
+            >
+              + Add to Order List
+            </button>
           </div>
         ))}
       </div>
@@ -217,12 +230,18 @@ const drinks = ['Pepsi', 'Diet Pepsi', 'Mtn Dew', 'Mug Root Beer', 'Orange Crush
           <h3>Calzone</h3>
           <p class="calzone-desc">About half a pizza stuffed in a crescent shaped crust and baked, filled with ricotta cheese and your choice of two ingredients</p>
           <div class="calzone-price">$15.00</div>
+          <button class="add-order-btn add-order-btn--light" data-name="Calzone" data-category="Calzone" data-price="$15.00" data-price-num="15.00">
+            + Add to Order List
+          </button>
         </div>
         <div class="pricing-card bread-card">
           <div class="menu-section-icon small-icon">🧄</div>
           <h3>Asiago Cheese Garlic Bread</h3>
           <p class="calzone-desc">A handful of warm and buttery goodness</p>
           <div class="calzone-price">$5.00</div>
+          <button class="add-order-btn add-order-btn--light" data-name="Asiago Cheese Garlic Bread" data-category="Garlic Bread" data-price="$5.00" data-price-num="5.00">
+            + Add to Order List
+          </button>
         </div>
       </div>
     </section>
@@ -239,6 +258,28 @@ const drinks = ['Pepsi', 'Diet Pepsi', 'Mtn Dew', 'Mug Root Beer', 'Orange Crush
           <div class="gourmet-card">
             <h3>{pizza.name}</h3>
             <p>{pizza.desc}</p>
+            <div class="gourmet-order-btns">
+              <button
+                class="add-order-btn add-order-btn--sm"
+                data-name={pizza.name}
+                data-category="Gourmet Pizza"
+                data-size='12"'
+                data-price="$19.00"
+                data-price-num="19.00"
+              >
+                + 12" · $19
+              </button>
+              <button
+                class="add-order-btn add-order-btn--sm"
+                data-name={pizza.name}
+                data-category="Gourmet Pizza"
+                data-size='16"'
+                data-price="$23.00"
+                data-price-num="23.00"
+              >
+                + 16" · $23
+              </button>
+            </div>
           </div>
         ))}
       </div>
@@ -270,7 +311,20 @@ const drinks = ['Pepsi', 'Diet Pepsi', 'Mtn Dew', 'Mug Root Beer', 'Orange Crush
         <div class="toppings-card drinks-card">
           <h3>🥤 Drinks</h3>
           <ul class="topping-list">
-            {drinks.map((d) => <li>{d}</li>)}
+            {drinks.map((d) => (
+              <li class="drink-item">
+                <span>{d}</span>
+                <button
+                  class="add-order-btn add-order-btn--xs"
+                  data-name={d}
+                  data-category="Drink"
+                  data-price="$1.50"
+                  data-price-num="1.50"
+                >
+                  + Add
+                </button>
+              </li>
+            ))}
           </ul>
           <p class="drink-price">$1.50</p>
         </div>
@@ -291,7 +345,10 @@ const drinks = ['Pepsi', 'Diet Pepsi', 'Mtn Dew', 'Mug Root Beer', 'Orange Crush
       <div class="order-cta-inner">
         <h2>Ready to Order?</h2>
         <p>Give us a call for delivery or takeout — we can't wait to make your next meal.</p>
-        <a href="tel:9187421200" class="btn btn-primary cta-btn">(918) 742-1200</a>
+        <div class="order-cta-btns">
+          <a href="tel:9187421200" class="btn btn-primary cta-btn">(918) 742-1200</a>
+          <a href={`${base}order-list`} class="btn btn-outline cta-btn">View My Order List</a>
+        </div>
       </div>
     </section>
 
@@ -845,4 +902,177 @@ const drinks = ['Pepsi', 'Diet Pepsi', 'Mtn Dew', 'Mug Root Beer', 'Orange Crush
       grid-template-columns: 1fr 1fr;
     }
   }
+
+  /* ── ADD TO ORDER BUTTONS ── */
+  .add-order-btn {
+    display: inline-block;
+    margin-top: 0.9rem;
+    background-color: var(--color-red);
+    color: #fff;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 0.82rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border: none;
+    padding: 0.55rem 1.1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+  }
+
+  .add-order-btn:hover {
+    background-color: var(--color-red-light);
+    transform: translateY(-1px);
+  }
+
+  .add-order-btn--light {
+    background-color: transparent;
+    border: 2px solid var(--color-red);
+    color: var(--color-red);
+    margin-top: 1rem;
+  }
+
+  .add-order-btn--light:hover {
+    background-color: var(--color-red);
+    color: #fff;
+  }
+
+  .add-order-btn--sm {
+    font-size: 0.78rem;
+    padding: 0.45rem 0.85rem;
+    margin-top: 0;
+  }
+
+  .add-order-btn--xs {
+    font-size: 0.72rem;
+    padding: 0.3rem 0.6rem;
+    margin-top: 0;
+    flex-shrink: 0;
+  }
+
+  .gourmet-order-btns {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.9rem;
+    flex-wrap: wrap;
+  }
+
+  .drink-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  .order-cta-btns {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* ── TOAST NOTIFICATION ── */
+  #order-toast {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    background-color: var(--color-dark);
+    color: #fff;
+    padding: 0.9rem 1.4rem;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    z-index: 999;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.25s, transform 0.25s;
+    pointer-events: none;
+  }
+
+  #order-toast.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  #order-toast a {
+    color: var(--color-gold-light);
+    text-decoration: underline;
+    font-size: 0.85rem;
+  }
 </style>
+
+<!-- Toast notification element -->
+<div id="order-toast" role="status" aria-live="polite">
+  <span id="order-toast-msg">Added to your order list!</span>
+  <a href={`${base}order-list`}>View List</a>
+</div>
+
+<script>
+  const STORAGE_KEY = 'piehole-order';
+
+  interface OrderItem {
+    id: string;
+    category: string;
+    name: string;
+    size: string | null;
+    price: string;
+    priceNum: number;
+    quantity: number;
+    notes: string;
+  }
+
+  function getOrder(): OrderItem[] {
+    try {
+      return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+    } catch {
+      return [];
+    }
+  }
+
+  function saveOrder(items: OrderItem[]) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
+    window.dispatchEvent(new CustomEvent('piehole-order-updated'));
+  }
+
+  function addToOrder(item: Omit<OrderItem, 'quantity' | 'notes' | 'id'>) {
+    const order = getOrder();
+    const id = `${item.category}-${item.name}-${item.size ?? 'nosize'}`.toLowerCase().replace(/[^a-z0-9-]/g, '-');
+    const existing = order.find(o => o.id === id);
+    if (existing) {
+      existing.quantity += 1;
+    } else {
+      order.push({ ...item, id, quantity: 1, notes: '' });
+    }
+    saveOrder(order);
+    return item.name;
+  }
+
+  let toastTimer: ReturnType<typeof setTimeout> | null = null;
+
+  function showToast(itemName: string) {
+    const toast = document.getElementById('order-toast')!;
+    const msg = document.getElementById('order-toast-msg')!;
+    msg.textContent = `"${itemName}" added to your order list!`;
+    toast.classList.add('visible');
+    if (toastTimer) clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('visible'), 3000);
+  }
+
+  document.querySelectorAll<HTMLButtonElement>('.add-order-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const name = btn.dataset.name ?? '';
+      const category = btn.dataset.category ?? '';
+      const size = btn.dataset.size ?? null;
+      const price = btn.dataset.price ?? '';
+      const priceNum = parseFloat(btn.dataset.priceNum ?? '0');
+      const added = addToOrder({ name, category, size, price, priceNum });
+      showToast(added);
+    });
+  });
+</script>

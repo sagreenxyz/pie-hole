@@ -1,6 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
+const base = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : import.meta.env.BASE_URL + '/';
+
 const photos = {
   hero:    'https://images.squarespace-cdn.com/content/v1/57510c9a4d088e539edafc3d/1464939633089-08MRPAYBJ1OKYBU0M02P/1.JPG?format=2500w',
   pizza1:  'https://images.squarespace-cdn.com/content/v1/57510c9a4d088e539edafc3d/1466570891382-BS45IRN4F18UKADEB7AN/IMG_3428.JPG?format=2500w',
@@ -26,7 +30,7 @@ const photos = {
       />
       <p class="hero-tagline">Handcrafted Pizza in the Heart of Tulsa</p>
       <div class="hero-actions">
-        <a href="/menu" class="btn btn-primary">View Our Menu</a>
+        <a href={`${base}menu`} class="btn btn-primary">View Our Menu</a>
         <a href="tel:9187421200" class="btn btn-outline">Call to Order</a>
       </div>
     </div>
@@ -84,7 +88,7 @@ const photos = {
             fresh salads, and hearty calzones that keep our neighbors coming back. From classic pepperoni
             to adventurous gourmet creations, every pie is made with love — and a whole lot of cheese.
           </p>
-          <a href="/menu" class="btn btn-primary" style="margin-top:1.5rem;">Explore the Menu</a>
+          <a href={`${base}menu`} class="btn btn-primary" style="margin-top:1.5rem;">Explore the Menu</a>
         </div>
         <div class="intro-features">
           <div class="feature-card">
@@ -153,7 +157,7 @@ const photos = {
         </div>
       </div>
       <div class="centered" style="margin-top:2.5rem;">
-        <a href="/menu" class="btn btn-outline">See Full Menu</a>
+        <a href={`${base}menu`} class="btn btn-outline">See Full Menu</a>
       </div>
     </div>
   </section>

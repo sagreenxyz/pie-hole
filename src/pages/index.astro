@@ -1,0 +1,780 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const photos = {
+  hero:    'https://images.squarespace-cdn.com/content/v1/57510c9a4d088e539edafc3d/1464939633089-08MRPAYBJ1OKYBU0M02P/1.JPG?format=2500w',
+  pizza1:  'https://images.squarespace-cdn.com/content/v1/57510c9a4d088e539edafc3d/1466570891382-BS45IRN4F18UKADEB7AN/IMG_3428.JPG?format=2500w',
+  pizza2:  'https://images.squarespace-cdn.com/content/v1/57510c9a4d088e539edafc3d/1466570224377-4910C6826JCKP4WMHH6O/IMG_7699.JPG?format=2500w',
+  pizza3:  'https://images.squarespace-cdn.com/content/v1/57510c9a4d088e539edafc3d/1466570236433-TRQ4LMATDOIEI00QG7B8/IMG_7723.JPG?format=2500w',
+  pizza4:  'https://images.squarespace-cdn.com/content/v1/57510c9a4d088e539edafc3d/1466570894124-1C15VSKCQOUYT8OVYSWS/IMG_3506.JPG?format=2500w',
+  pizza5:  'https://images.squarespace-cdn.com/content/v1/57510c9a4d088e539edafc3d/1464939644199-GOG0QU2AXZ01NBLVSNGG/3..JPG?format=2500w',
+  pizza6:  'https://images.squarespace-cdn.com/content/v1/57510c9a4d088e539edafc3d/1466570891625-8ZGGNOOQ0IM8XV0OO82O/IMG_3449.JPG?format=2500w',
+  pizza7:  'https://images.squarespace-cdn.com/content/v1/57510c9a4d088e539edafc3d/1464939657007-V5TU7GTVH6MFWWX5AOZS/6.JPG?format=2500w',
+};
+---
+
+<Layout title="Pie Hole Pizzeria | Tulsa, OK" description="Authentic handcrafted pizza in Tulsa, Oklahoma. Delivery or take out at 2708 E 15th St. Call (918) 742-1200.">
+
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <img
+        src="https://images.squarespace-cdn.com/content/v1/57510c9a4d088e539edafc3d/1466567499961-ME2HB1QMYW0WG0OL2TWK/ThePieHolePizzeriaLogo.png?format=750w"
+        alt="Pie Hole Pizzeria"
+        class="hero-logo"
+      />
+      <p class="hero-tagline">Handcrafted Pizza in the Heart of Tulsa</p>
+      <div class="hero-actions">
+        <a href="/menu" class="btn btn-primary">View Our Menu</a>
+        <a href="tel:9187421200" class="btn btn-outline">Call to Order</a>
+      </div>
+    </div>
+    <div class="hero-scroll-hint">
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 5v14M5 12l7 7 7-7"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ── ORDER BANNER ── -->
+  <section class="order-banner">
+    <div class="order-banner-inner">
+      <div class="order-item">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+        </svg>
+        <div>
+          <span class="order-label">Call to Order</span>
+          <a href="tel:9187421200" class="order-value">(918) 742-1200</a>
+        </div>
+      </div>
+      <div class="order-divider"></div>
+      <div class="order-item">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+        </svg>
+        <div>
+          <span class="order-label">Find Us</span>
+          <span class="order-value">2708 E 15th St, Tulsa OK 74104</span>
+        </div>
+      </div>
+      <div class="order-divider"></div>
+      <div class="order-item">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+        </svg>
+        <div>
+          <span class="order-label">Delivery &amp; Take Out</span>
+          <span class="order-value">Mon–Thu 11–9 &nbsp;|&nbsp; Fri–Sat 11–10 &nbsp;|&nbsp; Sun 1–6</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── INTRO SECTION ── -->
+  <section class="intro section-padded">
+    <div class="container">
+      <div class="intro-grid">
+        <div class="intro-text">
+          <span class="section-label">Welcome to Pie Hole Pizzeria</span>
+          <h2 class="section-title">More Than Just Pizza</h2>
+          <p class="intro-body">
+            Tucked away on 15th Street in Tulsa, Pie Hole Pizzeria has been serving up handcrafted pies,
+            fresh salads, and hearty calzones that keep our neighbors coming back. From classic pepperoni
+            to adventurous gourmet creations, every pie is made with love — and a whole lot of cheese.
+          </p>
+          <a href="/menu" class="btn btn-primary" style="margin-top:1.5rem;">Explore the Menu</a>
+        </div>
+        <div class="intro-features">
+          <div class="feature-card">
+            <div class="feature-icon">🍕</div>
+            <h3>Gourmet Pizzas</h3>
+            <p>15 signature creations plus build-your-own in 12" and 16" sizes.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🥗</div>
+            <h3>Fresh Salads</h3>
+            <p>Greek, Caesar, and our signature Pie Hole salad — made fresh daily.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🥙</div>
+            <h3>Hearty Calzones</h3>
+            <p>Stuffed with ricotta and your choice of toppings, baked to golden perfection.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🚗</div>
+            <h3>Delivery &amp; Takeout</h3>
+            <p>Hot pizza to your door or ready for pickup — your call.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FEATURED PIZZAS ── -->
+  <section class="featured section-padded dark-bg">
+    <div class="container">
+      <div class="section-header centered">
+        <span class="section-label light">Fan Favorites</span>
+        <h2 class="section-title light">Signature Gourmet Pies</h2>
+        <p class="section-subtitle light-sub">Bold flavors, quality ingredients, and generous portions — that's the Pie Hole way.</p>
+      </div>
+      <div class="pizza-cards">
+        <div class="pizza-card">
+          <div class="pizza-card-emoji">🍕</div>
+          <h3>Pie Hole Classic</h3>
+          <p>Red sauce, pepperoni, Italian sausage, bell peppers, roasted garlic, onion, mushroom, olives & mozzarella</p>
+        </div>
+        <div class="pizza-card">
+          <div class="pizza-card-emoji">🌶️</div>
+          <h3>Pepperiño</h3>
+          <p>Red sauce, extra pepperoni, spicy jalapeño peppers & mozzarella — for the bold at heart</p>
+        </div>
+        <div class="pizza-card">
+          <div class="pizza-card-emoji">🫒</div>
+          <h3>Greek Pizza</h3>
+          <p>Red sauce, spinach, mozzarella, gyro meat, feta, diced tomatoes, kalamata olives & red onions</p>
+        </div>
+        <div class="pizza-card">
+          <div class="pizza-card-emoji">🥬</div>
+          <h3>Pesto Pie</h3>
+          <p>Pesto sauce, chicken, diced tomatoes & goat cheese — a lighter, vibrant choice</p>
+        </div>
+        <div class="pizza-card">
+          <div class="pizza-card-emoji">🍍</div>
+          <h3>Tiki Pizza</h3>
+          <p>Red sauce, Canadian bacon, pineapple, green bell peppers, roasted red bell peppers & mozzarella</p>
+        </div>
+        <div class="pizza-card">
+          <div class="pizza-card-emoji">🥩</div>
+          <h3>Mangia Carne</h3>
+          <p>Red sauce loaded with Italian sausage, pepperoni, Canadian bacon, meatballs & gyro meat</p>
+        </div>
+      </div>
+      <div class="centered" style="margin-top:2.5rem;">
+        <a href="/menu" class="btn btn-outline">See Full Menu</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PHOTO GALLERY ── -->
+  <section class="gallery-section section-padded">
+    <div class="container">
+      <div class="section-header centered">
+        <span class="section-label">Fresh Out of the Oven</span>
+        <h2 class="section-title">From Our Kitchen</h2>
+        <p class="section-subtitle" style="margin:0 auto 2.5rem;">Every pizza is handcrafted with care. Here's a look at what we've been cooking up.</p>
+      </div>
+      <div class="gallery-grid">
+        <a href={photos.pizza1} target="_blank" rel="noopener noreferrer" class="gallery-item tall">
+          <img src={photos.pizza1} alt="Pie Hole pizza fresh from the oven" loading="lazy" />
+          <div class="gallery-overlay"><span>View</span></div>
+        </a>
+        <a href={photos.pizza2} target="_blank" rel="noopener noreferrer" class="gallery-item">
+          <img src={photos.pizza2} alt="Gourmet Pie Hole pizza" loading="lazy" />
+          <div class="gallery-overlay"><span>View</span></div>
+        </a>
+        <a href={photos.pizza3} target="_blank" rel="noopener noreferrer" class="gallery-item">
+          <img src={photos.pizza3} alt="Pie Hole pizza slice" loading="lazy" />
+          <div class="gallery-overlay"><span>View</span></div>
+        </a>
+        <a href={photos.pizza4} target="_blank" rel="noopener noreferrer" class="gallery-item">
+          <img src={photos.pizza4} alt="Pie Hole pizza" loading="lazy" />
+          <div class="gallery-overlay"><span>View</span></div>
+        </a>
+        <a href={photos.pizza5} target="_blank" rel="noopener noreferrer" class="gallery-item wide">
+          <img src={photos.pizza5} alt="Pie Hole Pizzeria selection" loading="lazy" />
+          <div class="gallery-overlay"><span>View</span></div>
+        </a>
+        <a href={photos.pizza6} target="_blank" rel="noopener noreferrer" class="gallery-item">
+          <img src={photos.pizza6} alt="Pie Hole specialty pizza" loading="lazy" />
+          <div class="gallery-overlay"><span>View</span></div>
+        </a>
+        <a href={photos.pizza7} target="_blank" rel="noopener noreferrer" class="gallery-item">
+          <img src={photos.pizza7} alt="Pie Hole pizza" loading="lazy" />
+          <div class="gallery-overlay"><span>View</span></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── HOURS & CONTACT ── -->
+  <section class="info-section section-padded" id="hours">
+    <div class="container">
+      <div class="info-grid">
+        <!-- Hours -->
+        <div class="info-card hours-card">
+          <span class="section-label">We're Open</span>
+          <h2 class="section-title">Hours</h2>
+          <ul class="hours-list">
+            <li>
+              <span class="day">Sunday</span>
+              <span class="dots"></span>
+              <span class="time">1:00 PM – 6:00 PM</span>
+            </li>
+            <li>
+              <span class="day">Monday – Thursday</span>
+              <span class="dots"></span>
+              <span class="time">11:00 AM – 9:00 PM</span>
+            </li>
+            <li>
+              <span class="day">Friday – Saturday</span>
+              <span class="dots"></span>
+              <span class="time">11:00 AM – 10:00 PM</span>
+            </li>
+          </ul>
+          <p class="hours-note">Delivery and take out available during all hours.</p>
+        </div>
+
+        <!-- Contact -->
+        <div class="info-card contact-card" id="contact">
+          <span class="section-label">Get In Touch</span>
+          <h2 class="section-title">Contact Us</h2>
+          <div class="contact-details">
+            <div class="contact-row">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+              </svg>
+              <a href="tel:9187421200">(918) 742-1200</a>
+            </div>
+            <div class="contact-row">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+              </svg>
+              <address>2708 E 15th St.<br/>Tulsa, OK 74104</address>
+            </div>
+            <div class="contact-row">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+              </svg>
+              <a href="https://www.facebook.com/ThePieHolePizzeria" target="_blank" rel="noopener noreferrer">Facebook</a>
+            </div>
+            <div class="contact-row">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+              </svg>
+              <a href="https://www.instagram.com/pieholepizzeria/" target="_blank" rel="noopener noreferrer">@pieholepizzeria</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── MAP ── -->
+  <section class="map-section" id="map">
+    <div class="map-wrapper">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3222.0746957514275!2d-95.95362012364197!3d36.140394504613596!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87b6ece62f05bb37%3A0x18920d61f0563742!2sPie%20Hole%20Pizzeria!5e0!3m2!1sen!2sus!4v1773867126070!5m2!1sen!2sus"
+        width="100%"
+        height="450"
+        style="border:0;"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Pie Hole Pizzeria Location"
+      ></iframe>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    min-height: 92vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image:
+      url('https://images.squarespace-cdn.com/content/v1/57510c9a4d088e539edafc3d/1464939633089-08MRPAYBJ1OKYBU0M02P/1.JPG?format=2500w');
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(10,5,2,0.75) 0%,
+      rgba(10,5,2,0.55) 50%,
+      rgba(10,5,2,0.8) 100%
+    );
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .hero-logo {
+    width: min(420px, 85vw);
+    filter: drop-shadow(0 4px 24px rgba(0,0,0,0.7));
+    animation: fadeDown 0.9s ease both;
+  }
+
+  .hero-tagline {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(1.1rem, 3vw, 1.6rem);
+    color: var(--color-gold-light);
+    letter-spacing: 0.04em;
+    animation: fadeDown 0.9s 0.2s ease both;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    animation: fadeDown 0.9s 0.4s ease both;
+  }
+
+  .hero-scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255,255,255,0.5);
+    animation: bounce 2s infinite;
+    z-index: 2;
+  }
+
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
+  }
+
+  /* ── ORDER BANNER ── */
+  .order-banner {
+    background-color: var(--color-red);
+    color: #fff;
+    padding: 1.2rem 2rem;
+  }
+
+  .order-banner-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .order-item {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .order-item svg {
+    flex-shrink: 0;
+    opacity: 0.9;
+  }
+
+  .order-label {
+    display: block;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0.8;
+    font-weight: 700;
+  }
+
+  .order-value {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .order-value[href]:hover {
+    text-decoration: underline;
+  }
+
+  .order-divider {
+    width: 1px;
+    height: 40px;
+    background-color: rgba(255,255,255,0.3);
+  }
+
+  /* ── INTRO ── */
+  .section-padded {
+    padding: 5rem 2rem;
+  }
+
+  .container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
+
+  .intro-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .intro-body {
+    font-size: 1.05rem;
+    color: var(--color-text);
+    line-height: 1.8;
+  }
+
+  .intro-features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+  }
+
+  .feature-card {
+    background: #fff;
+    border-radius: var(--border-radius);
+    padding: 1.4rem;
+    box-shadow: var(--shadow);
+    border-top: 3px solid var(--color-red);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .feature-icon {
+    font-size: 2rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .feature-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--color-dark);
+    margin-bottom: 0.4rem;
+  }
+
+  .feature-card p {
+    font-size: 0.875rem;
+    color: var(--color-text-light);
+    line-height: 1.5;
+  }
+
+  /* ── FEATURED PIZZAS ── */
+  .dark-bg {
+    background-color: var(--color-dark-brown);
+  }
+
+  .section-header.centered {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .section-label.light {
+    color: var(--color-gold-light);
+  }
+
+  .section-subtitle.light-sub {
+    color: #c8b89a;
+    margin: 0 auto;
+  }
+
+  .pizza-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .pizza-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--border-radius);
+    padding: 1.8rem 1.4rem;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .pizza-card:hover {
+    background: rgba(255,255,255,0.11);
+    transform: translateY(-4px);
+  }
+
+  .pizza-card-emoji {
+    font-size: 2.2rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .pizza-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--color-gold-light);
+    margin-bottom: 0.6rem;
+  }
+
+  .pizza-card p {
+    font-size: 0.875rem;
+    color: #c8b89a;
+    line-height: 1.6;
+  }
+
+  .centered {
+    text-align: center;
+  }
+
+  /* ── INFO SECTION (HOURS + CONTACT) ── */
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+
+  .info-card {
+    background: #fff;
+    border-radius: var(--border-radius);
+    padding: 2.5rem;
+    box-shadow: var(--shadow);
+  }
+
+  .hours-list {
+    list-style: none;
+    margin-bottom: 1.5rem;
+  }
+
+  .hours-list li {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px dashed #e8d8c4;
+    font-size: 0.95rem;
+  }
+
+  .hours-list li:last-child {
+    border-bottom: none;
+  }
+
+  .day {
+    font-weight: 700;
+    color: var(--color-dark);
+    white-space: nowrap;
+  }
+
+  .dots {
+    flex: 1;
+    border-bottom: 2px dotted #e0cdb5;
+    margin: 0 0.5rem;
+    min-width: 20px;
+  }
+
+  .time {
+    color: var(--color-red);
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .hours-note {
+    font-size: 0.85rem;
+    color: var(--color-text-light);
+    font-style: italic;
+  }
+
+  .contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  .contact-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.9rem;
+    font-size: 0.95rem;
+  }
+
+  .contact-row svg {
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+    color: var(--color-red);
+  }
+
+  .contact-row a,
+  .contact-row address {
+    color: var(--color-text);
+    font-style: normal;
+    line-height: 1.5;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .contact-row a:hover {
+    color: var(--color-red);
+  }
+
+  /* ── MAP ── */
+  .map-section {
+    width: 100%;
+  }
+
+  .map-wrapper {
+    width: 100%;
+    display: block;
+  }
+
+  .map-wrapper iframe {
+    display: block;
+    width: 100%;
+  }
+
+  /* ── GALLERY ── */
+  .gallery-section {
+    background: #fff;
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 240px;
+    gap: 0.6rem;
+  }
+
+  .gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--border-radius);
+    display: block;
+    cursor: zoom-in;
+  }
+
+  .gallery-item.tall {
+    grid-row: span 2;
+  }
+
+  .gallery-item.wide {
+    grid-column: span 2;
+  }
+
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+    display: block;
+  }
+
+  .gallery-item:hover img {
+    transform: scale(1.07);
+  }
+
+  .gallery-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(10,5,2,0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
+  }
+
+  .gallery-overlay span {
+    color: #fff;
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 0.3s, transform 0.3s;
+    background: rgba(192,57,43,0.85);
+    padding: 0.4rem 1.2rem;
+    border-radius: 4px;
+  }
+
+  .gallery-item:hover .gallery-overlay {
+    background: rgba(10,5,2,0.35);
+  }
+
+  .gallery-item:hover .gallery-overlay span {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  @media (max-width: 768px) {
+    .gallery-grid {
+      grid-template-columns: 1fr 1fr;
+      grid-auto-rows: 200px;
+    }
+
+    .gallery-item.tall {
+      grid-row: span 1;
+    }
+
+    .gallery-item.wide {
+      grid-column: span 2;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .gallery-grid {
+      grid-template-columns: 1fr;
+      grid-auto-rows: 220px;
+    }
+
+    .gallery-item.wide,
+    .gallery-item.tall {
+      grid-column: span 1;
+      grid-row: span 1;
+    }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .pizza-cards {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .info-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .intro-grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .pizza-cards {
+      grid-template-columns: 1fr;
+    }
+
+    .intro-features {
+      grid-template-columns: 1fr;
+    }
+
+    .order-banner-inner {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .order-divider {
+      display: none;
+    }
+  }
+</style>

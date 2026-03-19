@@ -201,8 +201,8 @@ const drinks = ['Pepsi', 'Diet Pepsi', 'Mtn Dew', 'Mug Root Beer', 'Orange Crush
           </div>
           <a href="#toppings" class="toppings-link">See available toppings ↓</a>
           <div class="pricing-add-btns">
-            <button class="add-to-order-btn add-to-order-btn--sm" data-add-name="Classic Pizza" data-add-note='12"' data-add-price="16">+ Add 12"</button>
-            <button class="add-to-order-btn add-to-order-btn--sm" data-add-name="Classic Pizza" data-add-note='16"' data-add-price="18">+ Add 16"</button>
+            <button class="add-to-order-btn add-to-order-btn--sm" data-add-name="Classic Pizza" data-add-note='12"' data-add-price="16" data-classic="true" data-extra-topping-price="2">+ Add 12"</button>
+            <button class="add-to-order-btn add-to-order-btn--sm" data-add-name="Classic Pizza" data-add-note='16"' data-add-price="18" data-classic="true" data-extra-topping-price="2.5">+ Add 16"</button>
           </div>
         </div>
         <div class="pricing-card featured-price">
@@ -371,6 +371,28 @@ const drinks = ['Pepsi', 'Diet Pepsi', 'Mtn Dew', 'Mug Root Beer', 'Orange Crush
   </aside>
 
   </div><!-- /.menu-layout -->
+
+  <!-- ── CLASSIC PIZZA CONFIGURATION MODAL ── -->
+  <dialog id="classicPizzaModal" class="classic-modal" aria-labelledby="classicModalTitle" aria-modal="true">
+    <div class="classic-modal-inner">
+      <div class="classic-modal-header">
+        <h2 id="classicModalTitle" class="classic-modal-title">🍕 Build Your Classic Pizza</h2>
+        <button type="button" class="classic-modal-close" id="classicModalClose" aria-label="Close">✕</button>
+      </div>
+      <div class="classic-modal-body" id="classicModalBody">
+        <!-- Filled by JavaScript -->
+      </div>
+      <div class="classic-modal-footer">
+        <div class="classic-price-preview">
+          <span class="classic-price-label">Pizza Total</span>
+          <span class="classic-price-amount" id="classicModalPrice">$16.00</span>
+        </div>
+        <button type="button" class="classic-modal-add-btn" id="classicModalAdd" disabled>
+          Add to Order
+        </button>
+      </div>
+    </div>
+  </dialog>
 
 <style>
   /* ── TWO-COLUMN PAGE LAYOUT ── */
@@ -1224,10 +1246,165 @@ const drinks = ['Pepsi', 'Diet Pepsi', 'Mtn Dew', 'Mug Root Beer', 'Orange Crush
       padding-bottom: max(0.85rem, env(safe-area-inset-bottom));
     }
   }
+
+  /* ── CLASSIC PIZZA MODAL ── */
+  .classic-modal {
+    border: none;
+    border-radius: 12px;
+    padding: 0;
+    max-width: 680px;
+    width: calc(100vw - 2rem);
+    max-height: calc(100vh - 4rem);
+    overflow: hidden;
+    background-color: var(--color-dark-brown);
+    color: #f0e6d3;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.7);
+  }
+
+  .classic-modal::backdrop {
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(3px);
+  }
+
+  .classic-modal-inner {
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100vh - 4rem);
+    overflow: hidden;
+  }
+
+  .classic-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.1rem 1.4rem;
+    background-color: var(--color-dark);
+    border-bottom: 2px solid var(--color-red);
+    flex-shrink: 0;
+  }
+
+  .classic-modal-title {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 900;
+    color: #fff;
+    margin: 0;
+  }
+
+  .classic-modal-close {
+    background: none;
+    border: none;
+    color: #7a6050;
+    cursor: pointer;
+    font-size: 1.2rem;
+    line-height: 1;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    transition: color 0.2s, background-color 0.2s;
+    flex-shrink: 0;
+  }
+
+  .classic-modal-close:hover {
+    color: #fff;
+    background-color: rgba(255,255,255,0.1);
+  }
+
+  .classic-modal-body {
+    overflow-y: auto;
+    padding: 1.2rem 1.4rem;
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  .classic-modal-footer {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.4rem;
+    background-color: var(--color-dark);
+    border-top: 1px solid rgba(255,255,255,0.1);
+    flex-shrink: 0;
+  }
+
+  .classic-price-preview {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    flex: 1;
+  }
+
+  .classic-price-label {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #7a6050;
+    font-weight: 700;
+  }
+
+  .classic-price-amount {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: var(--color-gold-light);
+  }
+
+  .classic-modal-add-btn {
+    background: linear-gradient(135deg, var(--color-red-dark) 0%, var(--color-red) 100%);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 0.75rem 1.6rem;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: filter 0.2s, transform 0.15s, opacity 0.2s;
+    white-space: nowrap;
+  }
+
+  .classic-modal-add-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none !important;
+    filter: none !important;
+  }
+
+  .classic-modal-add-btn:not(:disabled):hover {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+  }
+
+  @media (max-width: 500px) {
+    .classic-modal-body {
+      padding: 1rem;
+    }
+  }
 </style>
 
 <script>
   const ORDER_KEY = 'phoneInOrder';
+
+  // Topping data (mirrors frontmatter arrays)
+  const VEG_TOPPINGS = [
+    'Spinach', 'Sliced black olives', 'Roasted garlic', 'Green bell peppers',
+    'Sliced onion', 'Mushrooms', 'Jalapeño peppers', 'Diced tomato',
+    'Pineapple', 'Sun-dried tomato', 'Artichoke hearts', 'Roasted red bell peppers',
+    'Green olives', 'Kalamata olives',
+  ];
+  const MEAT_TOPPINGS = [
+    'Pepperoni', 'Italian sausage', 'Canadian bacon', 'Salami',
+    'Gyro meat', 'Smoked Italian ham', 'Meatballs',
+  ];
+  const CHEESES = ['Mozzarella', 'Feta', 'Goat cheese'];
 
   interface OrderItem {
     key: string;
@@ -1235,6 +1412,13 @@ const drinks = ['Pepsi', 'Diet Pepsi', 'Mtn Dew', 'Mug Root Beer', 'Orange Crush
     note: string;
     qty: number;
     price: number;
+    // Classic pizza specific (optional)
+    isClassic?: boolean;
+    requiredTopping?: string;
+    cheese?: string;
+    extraToppings?: string[];
+    extraToppingPrice?: number;
+    basePrice?: number;
   }
 
   function getOrder(): OrderItem[] {
@@ -1262,6 +1446,34 @@ const drinks = ['Pepsi', 'Diet Pepsi', 'Mtn Dew', 'Mug Root Beer', 'Orange Crush
     renderOrderPane();
   }
 
+  function addClassicPizzaToOrder(
+    size: string,
+    basePrice: number,
+    extraToppingPrice: number,
+    requiredTopping: string,
+    cheese: string,
+    extraToppings: string[]
+  ) {
+    const items = getOrder();
+    const key = `classic-${size}-${Date.now()}`;
+    const totalPrice = basePrice + extraToppings.length * extraToppingPrice;
+    items.push({
+      key,
+      name: 'Classic Pizza',
+      note: size,
+      qty: 1,
+      price: totalPrice,
+      isClassic: true,
+      requiredTopping,
+      cheese,
+      extraToppings: [...extraToppings],
+      extraToppingPrice,
+      basePrice,
+    });
+    saveOrder(items);
+    renderOrderPane();
+  }
+
   function changeQty(key: string, delta: number) {
     const items = getOrder();
     const idx = items.findIndex((i) => i.key === key);
@@ -1281,6 +1493,17 @@ const drinks = ['Pepsi', 'Diet Pepsi', 'Mtn Dew', 'Mug Root Beer', 'Orange Crush
     renderOrderPane();
   }
 
+  function removeClassicExtraTopping(key: string, topping: string) {
+    const items = getOrder();
+    const item = items.find((i) => i.key === key);
+    if (item && item.extraToppings) {
+      item.extraToppings = item.extraToppings.filter((t) => t !== topping);
+      item.price = (item.basePrice ?? 0) + item.extraToppings.length * (item.extraToppingPrice ?? 0);
+    }
+    saveOrder(items);
+    renderOrderPane();
+  }
+
   function clearOrder() {
     saveOrder([]);
     renderOrderPane();
@@ -1288,6 +1511,296 @@ const drinks = ['Pepsi', 'Diet Pepsi', 'Mtn Dew', 'Mug Root Beer', 'Orange Crush
 
   function fmt(amount: number) {
     return `$${amount.toFixed(2)}`;
+  }
+
+  // ── Classic Pizza Modal ──────────────────────────────────────────
+
+  let _modalBasePrice = 16;
+  let _modalExtraToppingPrice = 2;
+  let _modalSize = '12"';
+
+  function makeRadioOption(groupName: string, value: string): HTMLLabelElement {
+    const label = document.createElement('label');
+    label.className = 'classic-option-label';
+    const input = document.createElement('input');
+    input.type = 'radio';
+    input.name = groupName;
+    input.value = value;
+    input.className = 'classic-option-input';
+    input.addEventListener('change', updateModalState);
+    label.appendChild(input);
+    label.appendChild(document.createTextNode(value));
+    return label;
+  }
+
+  function makeCheckboxOption(groupName: string, value: string): HTMLLabelElement {
+    const label = document.createElement('label');
+    label.className = 'classic-option-label';
+    const input = document.createElement('input');
+    input.type = 'checkbox';
+    input.name = groupName;
+    input.value = value;
+    input.className = 'classic-option-input';
+    input.addEventListener('change', updateModalState);
+    label.appendChild(input);
+    label.appendChild(document.createTextNode(value));
+    return label;
+  }
+
+  function makeToppingColumn(label: string, toppings: string[], makeOption: (name: string, value: string) => HTMLLabelElement, groupName: string): HTMLDivElement {
+    const col = document.createElement('div');
+    const colLabel = document.createElement('div');
+    colLabel.className = 'classic-topping-col-label';
+    colLabel.textContent = label;
+    col.appendChild(colLabel);
+    toppings.forEach((t) => col.appendChild(makeOption(groupName, t)));
+    return col;
+  }
+
+  function buildModalBody() {
+    const body = document.getElementById('classicModalBody');
+    if (!body) return;
+    body.innerHTML = '';
+
+    // Helper: build a legend with a required badge
+    function makeRequiredLegend(label: string): HTMLLegendElement {
+      const legend = document.createElement('legend');
+      legend.className = 'classic-fieldset-legend';
+      const badge = document.createElement('span');
+      badge.className = 'classic-required-badge';
+      badge.textContent = 'Required';
+      legend.appendChild(badge);
+      legend.appendChild(document.createTextNode('\u00a0' + label));
+      return legend;
+    }
+
+    // ── Fieldset 1: Required topping ──
+    const fs1 = document.createElement('fieldset');
+    fs1.className = 'classic-fieldset';
+    fs1.appendChild(makeRequiredLegend('Choose One Topping (included in price)'));
+    const cols1 = document.createElement('div');
+    cols1.className = 'classic-topping-cols';
+    cols1.appendChild(makeToppingColumn('🥦 Vegetables', VEG_TOPPINGS, makeRadioOption, 'classic-required-topping'));
+    cols1.appendChild(makeToppingColumn('🥩 Meats', MEAT_TOPPINGS, makeRadioOption, 'classic-required-topping'));
+    fs1.appendChild(cols1);
+    body.appendChild(fs1);
+
+    // ── Fieldset 2: Cheese ──
+    const fs2 = document.createElement('fieldset');
+    fs2.className = 'classic-fieldset';
+    fs2.appendChild(makeRequiredLegend('Choose Your Cheese'));
+    const cheeseRow = document.createElement('div');
+    cheeseRow.className = 'classic-cheese-row';
+    CHEESES.forEach((c) => cheeseRow.appendChild(makeRadioOption('classic-cheese', c)));
+    fs2.appendChild(cheeseRow);
+    body.appendChild(fs2);
+
+    // ── Fieldset 3: Optional extra toppings ──
+    const fs3 = document.createElement('fieldset');
+    fs3.className = 'classic-fieldset';
+    const legend3 = document.createElement('legend');
+    legend3.className = 'classic-fieldset-legend';
+    legend3.appendChild(document.createTextNode('Optional Extra Toppings\u00a0'));
+    const priceBadge = document.createElement('span');
+    priceBadge.className = 'classic-extra-price-badge';
+    priceBadge.textContent = `${fmt(_modalExtraToppingPrice)} each`;
+    legend3.appendChild(priceBadge);
+    fs3.appendChild(legend3);
+    const cols3 = document.createElement('div');
+    cols3.className = 'classic-topping-cols';
+    cols3.appendChild(makeToppingColumn('🥦 Vegetables', VEG_TOPPINGS, makeCheckboxOption, 'classic-extra-topping'));
+    cols3.appendChild(makeToppingColumn('🥩 Meats', MEAT_TOPPINGS, makeCheckboxOption, 'classic-extra-topping'));
+    fs3.appendChild(cols3);
+    body.appendChild(fs3);
+  }
+
+  function getModalSelections() {
+    const modal = document.getElementById('classicPizzaModal') as HTMLDialogElement | null;
+    if (!modal) return null;
+    const requiredInput = modal.querySelector<HTMLInputElement>('input[name="classic-required-topping"]:checked');
+    const cheeseInput = modal.querySelector<HTMLInputElement>('input[name="classic-cheese"]:checked');
+    const extraInputs = Array.from(modal.querySelectorAll<HTMLInputElement>('input[name="classic-extra-topping"]:checked'));
+    return {
+      requiredTopping: requiredInput?.value ?? '',
+      cheese: cheeseInput?.value ?? '',
+      extraToppings: extraInputs.map((i) => i.value),
+    };
+  }
+
+  function updateModalState() {
+    const sel = getModalSelections();
+    if (!sel) return;
+    const addBtn = document.getElementById('classicModalAdd') as HTMLButtonElement | null;
+    const priceEl = document.getElementById('classicModalPrice');
+    const isValid = sel.requiredTopping !== '' && sel.cheese !== '';
+    if (addBtn) addBtn.disabled = !isValid;
+    if (priceEl) {
+      const total = _modalBasePrice + sel.extraToppings.length * _modalExtraToppingPrice;
+      priceEl.textContent = fmt(total);
+    }
+  }
+
+  function openClassicModal(size: string, basePrice: number, extraToppingPrice: number) {
+    _modalSize = size;
+    _modalBasePrice = basePrice;
+    _modalExtraToppingPrice = extraToppingPrice;
+
+    const modal = document.getElementById('classicPizzaModal') as HTMLDialogElement | null;
+    const title = document.getElementById('classicModalTitle');
+    const addBtn = document.getElementById('classicModalAdd') as HTMLButtonElement | null;
+    const priceEl = document.getElementById('classicModalPrice');
+
+    if (!modal) return;
+    if (title) title.textContent = `🍕 Build Your Classic Pizza (${size})`;
+    if (addBtn) addBtn.disabled = true;
+    if (priceEl) priceEl.textContent = fmt(basePrice);
+
+    buildModalBody();
+    modal.showModal();
+  }
+
+  // ── Order Pane Rendering ─────────────────────────────────────────
+
+  const TRASH_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>`;
+  const DEC_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/></svg>`;
+  const INC_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>`;
+
+  function createQtyControls(item: OrderItem): HTMLDivElement {
+    const controls = document.createElement('div');
+    controls.className = 'order-item-controls';
+    const decBtn = document.createElement('button');
+    decBtn.className = 'order-qty-btn';
+    decBtn.setAttribute('aria-label', `Decrease quantity of ${item.name}`);
+    decBtn.innerHTML = DEC_SVG;
+    decBtn.addEventListener('click', () => changeQty(item.key, -1));
+    const qtyEl = document.createElement('span');
+    qtyEl.className = 'order-item-qty';
+    qtyEl.textContent = String(item.qty);
+    const incBtn = document.createElement('button');
+    incBtn.className = 'order-qty-btn';
+    incBtn.setAttribute('aria-label', `Increase quantity of ${item.name}`);
+    incBtn.innerHTML = INC_SVG;
+    incBtn.addEventListener('click', () => changeQty(item.key, 1));
+    controls.appendChild(decBtn);
+    controls.appendChild(qtyEl);
+    controls.appendChild(incBtn);
+    return controls;
+  }
+
+  function renderClassicPizzaItem(item: OrderItem, list: HTMLUListElement) {
+    const li = document.createElement('li');
+    li.className = 'order-pane-item order-pane-item--classic';
+
+    // ── Header row ──
+    const headerRow = document.createElement('div');
+    headerRow.className = 'order-classic-header';
+
+    const nameGroup = document.createElement('div');
+    nameGroup.className = 'order-item-info';
+    const nameEl = document.createElement('span');
+    nameEl.className = 'order-item-name';
+    nameEl.textContent = `${item.name} (${item.note})`;
+    nameGroup.appendChild(nameEl);
+    const basePriceEl = document.createElement('span');
+    basePriceEl.className = 'order-item-unit-price';
+    basePriceEl.textContent = `${fmt(item.basePrice ?? 0)} base`;
+    nameGroup.appendChild(basePriceEl);
+
+    const controls = createQtyControls(item);
+
+    const itemSubtotal = document.createElement('span');
+    itemSubtotal.className = 'order-item-subtotal';
+    itemSubtotal.textContent = fmt(item.price * item.qty);
+
+    const removeBtn = document.createElement('button');
+    removeBtn.className = 'order-item-remove';
+    removeBtn.setAttribute('aria-label', `Remove ${item.name} from order`);
+    removeBtn.innerHTML = TRASH_SVG;
+    removeBtn.addEventListener('click', () => deleteOrderItem(item.key));
+
+    headerRow.appendChild(nameGroup);
+    headerRow.appendChild(controls);
+    headerRow.appendChild(itemSubtotal);
+    headerRow.appendChild(removeBtn);
+    li.appendChild(headerRow);
+
+    // ── Toppings detail ──
+    const detail = document.createElement('div');
+    detail.className = 'order-classic-detail';
+
+    // Required topping
+    if (item.requiredTopping) {
+      const row = document.createElement('div');
+      row.className = 'order-classic-topping-row';
+      const toppingName = document.createElement('span');
+      toppingName.className = 'order-classic-topping-name';
+      toppingName.textContent = `🍕 ${item.requiredTopping}`;
+      const includedTag = document.createElement('span');
+      includedTag.className = 'order-classic-tag order-classic-tag--included';
+      includedTag.textContent = 'included';
+      row.appendChild(toppingName);
+      row.appendChild(includedTag);
+      detail.appendChild(row);
+    }
+
+    // Cheese
+    if (item.cheese) {
+      const row = document.createElement('div');
+      row.className = 'order-classic-topping-row';
+      const cheeseName = document.createElement('span');
+      cheeseName.className = 'order-classic-topping-name';
+      cheeseName.textContent = `🧀 ${item.cheese}`;
+      const cheeseTag = document.createElement('span');
+      cheeseTag.className = 'order-classic-tag order-classic-tag--cheese';
+      cheeseTag.textContent = 'cheese';
+      row.appendChild(cheeseName);
+      row.appendChild(cheeseTag);
+      detail.appendChild(row);
+    }
+
+    // Extra toppings
+    const extras = item.extraToppings ?? [];
+    if (extras.length > 0) {
+      const divider = document.createElement('div');
+      divider.className = 'order-classic-extras-divider';
+      divider.textContent = 'Extra toppings';
+      detail.appendChild(divider);
+
+      extras.forEach((topping) => {
+        const row = document.createElement('div');
+        row.className = 'order-classic-topping-row order-classic-topping-row--extra';
+        const toppingName = document.createElement('span');
+        toppingName.className = 'order-classic-topping-name';
+        toppingName.textContent = `+ ${topping}`;
+        const toppingPrice = document.createElement('span');
+        toppingPrice.className = 'order-classic-extra-amt';
+        toppingPrice.textContent = fmt(item.extraToppingPrice ?? 0);
+        const removeExtra = document.createElement('button');
+        removeExtra.className = 'order-classic-remove-extra';
+        removeExtra.setAttribute('aria-label', `Remove extra ${topping}`);
+        removeExtra.textContent = '✕';
+        removeExtra.addEventListener('click', () => removeClassicExtraTopping(item.key, topping));
+        row.appendChild(toppingName);
+        row.appendChild(toppingPrice);
+        row.appendChild(removeExtra);
+        detail.appendChild(row);
+      });
+
+      // Extras subtotal
+      const extrasTotal = extras.length * (item.extraToppingPrice ?? 0);
+      const subtotalRow = document.createElement('div');
+      subtotalRow.className = 'order-classic-extras-subtotal';
+      const subtotalLabel = document.createElement('span');
+      subtotalLabel.textContent = 'Extras subtotal';
+      const subtotalAmount = document.createElement('span');
+      subtotalAmount.textContent = fmt(extrasTotal);
+      subtotalRow.appendChild(subtotalLabel);
+      subtotalRow.appendChild(subtotalAmount);
+      detail.appendChild(subtotalRow);
+    }
+
+    li.appendChild(detail);
+    list.appendChild(li);
   }
 
   function renderOrderPane() {
@@ -1302,15 +1815,10 @@ const drinks = ['Pepsi', 'Diet Pepsi', 'Mtn Dew', 'Mug Root Beer', 'Orange Crush
     if (!sidebar || !list || !emptyState || !subtotalSection || !subtotalEl) return;
 
     const hasItems = items.length > 0;
-
-    // Mobile: toggle sidebar visibility
     sidebar.classList.toggle('has-items', hasItems);
-
-    // Show/hide sections based on whether there are items
     emptyState.hidden = hasItems;
     list.hidden = !hasItems;
     subtotalSection.hidden = !hasItems;
-    // The footer (call button) is always visible; only toggle Clear All and the trash icon
     if (clearAllBtn) clearAllBtn.hidden = !hasItems;
     if (clearIcon) clearIcon.hidden = !hasItems;
 
@@ -1319,19 +1827,21 @@ const drinks = ['Pepsi', 'Diet Pepsi', 'Mtn Dew', 'Mug Root Beer', 'Orange Crush
       return;
     }
 
-    // Compute subtotal
     const subtotal = items.reduce((s, i) => s + i.price * i.qty, 0);
     subtotalEl.textContent = fmt(subtotal);
 
     list.innerHTML = '';
     items.forEach((item) => {
+      if (item.isClassic) {
+        renderClassicPizzaItem(item, list);
+        return;
+      }
+
       const li = document.createElement('li');
       li.className = 'order-pane-item';
 
-      // Price guard: only show price-related UI when a price is known
       const hasPrice = item.price > 0;
 
-      // Item info (name + note)
       const info = document.createElement('div');
       info.className = 'order-item-info';
 
@@ -1354,42 +1864,18 @@ const drinks = ['Pepsi', 'Diet Pepsi', 'Mtn Dew', 'Mug Root Beer', 'Orange Crush
         info.appendChild(unitEl);
       }
 
-      // Qty controls
-      const controls = document.createElement('div');
-      controls.className = 'order-item-controls';
+      const controls = createQtyControls(item);
 
-      const decBtn = document.createElement('button');
-      decBtn.className = 'order-qty-btn';
-      decBtn.setAttribute('aria-label', `Decrease quantity of ${item.name}`);
-      decBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/></svg>`;
-      decBtn.addEventListener('click', () => changeQty(item.key, -1));
-
-      const qtyEl = document.createElement('span');
-      qtyEl.className = 'order-item-qty';
-      qtyEl.textContent = String(item.qty);
-
-      const incBtn = document.createElement('button');
-      incBtn.className = 'order-qty-btn';
-      incBtn.setAttribute('aria-label', `Increase quantity of ${item.name}`);
-      incBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>`;
-      incBtn.addEventListener('click', () => changeQty(item.key, 1));
-
-      controls.appendChild(decBtn);
-      controls.appendChild(qtyEl);
-      controls.appendChild(incBtn);
-
-      // Item subtotal (only shown when a price is known)
       const itemSubtotal = document.createElement('span');
       itemSubtotal.className = 'order-item-subtotal';
       if (hasPrice) {
         itemSubtotal.textContent = fmt(item.price * item.qty);
       }
 
-      // Remove button (trash icon)
       const removeBtn = document.createElement('button');
       removeBtn.className = 'order-item-remove';
       removeBtn.setAttribute('aria-label', `Remove ${item.name} from order`);
-      removeBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>`;
+      removeBtn.innerHTML = TRASH_SVG;
       removeBtn.addEventListener('click', () => deleteOrderItem(item.key));
 
       li.appendChild(info);
@@ -1403,13 +1889,57 @@ const drinks = ['Pepsi', 'Diet Pepsi', 'Mtn Dew', 'Mug Root Beer', 'Orange Crush
   document.addEventListener('DOMContentLoaded', () => {
     renderOrderPane();
 
-    document.querySelectorAll<HTMLButtonElement>('[data-add-name]').forEach((btn) => {
+    // Regular add-to-order buttons (non-classic)
+    document.querySelectorAll<HTMLButtonElement>('[data-add-name]:not([data-classic])').forEach((btn) => {
       btn.addEventListener('click', () => {
         const name = btn.dataset.addName ?? '';
         const note = btn.dataset.addNote ?? '';
         const price = parseFloat(btn.dataset.addPrice ?? '0');
         addToOrder(name, note, price);
       });
+    });
+
+    // Classic pizza buttons → open modal
+    document.querySelectorAll<HTMLButtonElement>('[data-classic="true"]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const size = btn.dataset.addNote ?? '12"';
+        const basePrice = parseFloat(btn.dataset.addPrice ?? '16');
+        const extraToppingPrice = parseFloat(btn.dataset.extraToppingPrice ?? '2');
+        openClassicModal(size, basePrice, extraToppingPrice);
+      });
+    });
+
+    // Modal: close button
+    document.getElementById('classicModalClose')?.addEventListener('click', () => {
+      (document.getElementById('classicPizzaModal') as HTMLDialogElement | null)?.close();
+    });
+
+    // Modal: close on backdrop click
+    document.getElementById('classicPizzaModal')?.addEventListener('click', (e) => {
+      const modal = e.currentTarget as HTMLDialogElement;
+      const rect = modal.getBoundingClientRect();
+      const me = e as MouseEvent;
+      const clickedOutside =
+        me.clientX < rect.left ||
+        me.clientX > rect.right ||
+        me.clientY < rect.top ||
+        me.clientY > rect.bottom;
+      if (clickedOutside) modal.close();
+    });
+
+    // Modal: Add to Order
+    document.getElementById('classicModalAdd')?.addEventListener('click', () => {
+      const sel = getModalSelections();
+      if (!sel || !sel.requiredTopping || !sel.cheese) return;
+      addClassicPizzaToOrder(
+        _modalSize,
+        _modalBasePrice,
+        _modalExtraToppingPrice,
+        sel.requiredTopping,
+        sel.cheese,
+        sel.extraToppings
+      );
+      (document.getElementById('classicPizzaModal') as HTMLDialogElement | null)?.close();
     });
 
     document.getElementById('clearOrderBtn')?.addEventListener('click', clearOrder);
@@ -1532,5 +2062,230 @@ const drinks = ['Pepsi', 'Diet Pepsi', 'Mtn Dew', 'Mug Root Beer', 'Orange Crush
   .order-item-remove:hover {
     color: var(--color-red-light);
     background-color: rgba(192,57,43,0.18);
+  }
+
+  /* ── Classic pizza order pane item ── */
+  .order-pane-item--classic {
+    display: block;
+    padding: 0;
+  }
+
+  .order-classic-header {
+    display: grid;
+    grid-template-columns: 1fr auto auto auto;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.65rem 0.85rem 0.45rem;
+  }
+
+  .order-classic-detail {
+    padding: 0 0.85rem 0.65rem 1.1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.18rem;
+  }
+
+  .order-classic-topping-row {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.78rem;
+    color: #a8937a;
+    padding: 0.1rem 0;
+  }
+
+  .order-classic-topping-row--extra {
+    color: #c8b89a;
+    padding: 0.15rem 0;
+  }
+
+  .order-classic-topping-name {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .order-classic-tag {
+    font-size: 0.62rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.1em 0.45em;
+    border-radius: 3px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .order-classic-tag--included {
+    background-color: rgba(40, 167, 69, 0.25);
+    color: #7ee8a2;
+  }
+
+  .order-classic-tag--cheese {
+    background-color: rgba(255, 193, 7, 0.2);
+    color: var(--color-gold-light);
+  }
+
+  .order-classic-extra-amt {
+    font-size: 0.75rem;
+    color: var(--color-gold-light);
+    font-weight: 600;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .order-classic-remove-extra {
+    background: none;
+    border: none;
+    color: #5a4535;
+    cursor: pointer;
+    font-size: 0.7rem;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
+    transition: color 0.2s, background-color 0.2s;
+    flex-shrink: 0;
+    padding: 0;
+    line-height: 1;
+  }
+
+  .order-classic-remove-extra:hover {
+    color: var(--color-red-light);
+    background-color: rgba(192,57,43,0.2);
+  }
+
+  .order-classic-extras-divider {
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    font-weight: 700;
+    color: #5a4535;
+    margin-top: 0.35rem;
+    padding-top: 0.35rem;
+    border-top: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .order-classic-extras-subtotal {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    color: #c8b89a;
+    font-weight: 600;
+    margin-top: 0.3rem;
+    padding-top: 0.3rem;
+    border-top: 1px dashed rgba(255,255,255,0.1);
+  }
+
+  /* ── Classic pizza modal — dynamically created inner content ── */
+  .classic-fieldset {
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    padding: 1rem 1.1rem 1.1rem;
+    margin: 0;
+  }
+
+  .classic-fieldset-legend {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: #f0e6d3;
+    padding: 0 0.4rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .classic-required-badge {
+    background-color: var(--color-red);
+    color: #fff;
+    font-size: 0.65rem;
+    font-weight: 800;
+    padding: 0.15em 0.5em;
+    border-radius: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .classic-extra-price-badge {
+    background-color: rgba(255,255,255,0.1);
+    color: var(--color-gold-light);
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.15em 0.5em;
+    border-radius: 3px;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  .classic-topping-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem 1.2rem;
+    margin-top: 0.85rem;
+  }
+
+  .classic-topping-col-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #c8b89a;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.4rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .classic-option-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.32rem 0.4rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.84rem;
+    color: #c8b89a;
+    transition: background-color 0.15s, color 0.15s;
+    user-select: none;
+  }
+
+  .classic-option-label:hover {
+    background-color: rgba(255,255,255,0.07);
+    color: #f0e6d3;
+  }
+
+  .classic-option-label:has(input:checked) {
+    background-color: rgba(192,57,43,0.2);
+    color: #fff;
+  }
+
+  .classic-option-input {
+    accent-color: var(--color-red);
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+
+  .classic-cheese-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    margin-top: 0.75rem;
+  }
+
+  @media (max-width: 500px) {
+    .classic-topping-cols {
+      grid-template-columns: 1fr;
+    }
+
+    .classic-cheese-row {
+      flex-direction: column;
+    }
   }
 </style>

@@ -1,0 +1,89 @@
+name: Deploy Preview to GitHub Pages
+
+on:
+  push:
+    branches: ["copilot/add-qr-code-for-contact"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  # Share the 'pages' group with deploy.yml to prevent concurrent GitHub Pages deployments.
+  # With cancel-in-progress: false, runs are serialized rather than cancelled.
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Build (main + preview)
+    runs-on: ubuntu-latest
+    env:
+      # Required for GitHub Actions to use Node.js 24 compatible JavaScript actions
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+    steps:
+      - name: Checkout main branch (production site)
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          path: main-site
+
+      - name: Checkout feature branch (preview site)
+        uses: actions/checkout@v4
+        with:
+          path: preview-site
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: main-site/package-lock.json
+
+      - name: Install dependencies (production)
+        run: npm ci
+        working-directory: main-site
+
+      - name: Install dependencies (preview)
+        run: npm ci
+        working-directory: preview-site
+
+      - name: Build production site
+        run: npm run build
+        working-directory: main-site
+
+      - name: Build preview site (base /pie-hole/preview)
+        run: |
+          cat > astro.config.mjs << 'EOF'
+          import { defineConfig } from 'astro/config';
+          export default defineConfig({
+            site: 'https://sagreenxyz.github.io',
+            base: '/pie-hole/preview',
+          });
+          EOF
+          npm run build
+        working-directory: preview-site
+
+      - name: Merge preview into production artifact
+        run: |
+          mkdir -p main-site/dist/preview
+          cp -r preview-site/dist/* main-site/dist/preview/
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: main-site/dist
+
+  deploy:
+    name: Deploy
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

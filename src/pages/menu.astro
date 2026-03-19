@@ -343,7 +343,18 @@ const drinks = ['Pepsi', 'Diet Pepsi', 'Mtn Dew', 'Mug Root Beer', 'Orange Crush
           <span class="order-subtotal-label">Subtotal</span>
           <span class="order-subtotal-amount" id="orderSubtotal">$0.00</span>
         </div>
-        <p class="order-tax-note">Taxes &amp; fees added when order is placed</p>
+        <div class="order-subtotal-row">
+          <span class="order-subtotal-label">Delivery Fee</span>
+          <span class="order-call-value" aria-label="Delivery fee — call for details">Call</span>
+        </div>
+        <div class="order-subtotal-row">
+          <span class="order-subtotal-label">Taxes</span>
+          <span class="order-call-value" aria-label="Taxes — call for details">Call</span>
+        </div>
+        <div class="order-subtotal-row order-grand-total-row">
+          <span class="order-subtotal-label">Grand Total</span>
+          <span class="order-call-value" aria-label="Grand total — call for details">Call</span>
+        </div>
       </div>
 
       <div class="order-pane-footer" id="orderFooter">
@@ -1049,10 +1060,17 @@ const drinks = ['Pepsi', 'Diet Pepsi', 'Mtn Dew', 'Mug Root Beer', 'Orange Crush
     color: var(--color-gold-light);
   }
 
-  .order-tax-note {
-    font-size: 0.72rem;
-    color: #7a6050;
+  .order-call-value {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--color-gold-light);
     font-style: italic;
+  }
+
+  .order-grand-total-row {
+    border-top: 1px solid rgba(255,255,255,0.15);
+    margin-top: 0.4rem;
+    padding-top: 0.4rem;
   }
 
   /* Footer: call button + clear */

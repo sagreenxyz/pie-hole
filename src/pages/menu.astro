@@ -141,6 +141,7 @@ const drinks = ['Pepsi', 'Diet Pepsi', 'Mtn Dew', 'Mug Root Beer', 'Orange Crush
               <span class="price-badge">{item.price}</span>
             </div>
             <p>{item.desc}</p>
+            <button class="add-to-order-btn" data-add-name={item.name} data-add-note="">+ Add to Order</button>
           </div>
         ))}
       </div>
@@ -193,6 +194,10 @@ const drinks = ['Pepsi', 'Diet Pepsi', 'Mtn Dew', 'Mug Root Beer', 'Orange Crush
             </div>
           </div>
           <a href="#toppings" class="toppings-link">See available toppings ↓</a>
+          <div class="pricing-add-btns">
+            <button class="add-to-order-btn add-to-order-btn--sm" data-add-name="Classic Pizza" data-add-note='12"'>+ Add 12"</button>
+            <button class="add-to-order-btn add-to-order-btn--sm" data-add-name="Classic Pizza" data-add-note='16"'>+ Add 16"</button>
+          </div>
         </div>
         <div class="pricing-card featured-price">
           <div class="gourmet-size-badges">
@@ -211,18 +216,24 @@ const drinks = ['Pepsi', 'Diet Pepsi', 'Mtn Dew', 'Mug Root Beer', 'Orange Crush
             </li>
           </ul>
           <a href="#gourmet" class="toppings-link">See available gourmet options ↓</a>
+          <div class="pricing-add-btns">
+            <button class="add-to-order-btn add-to-order-btn--sm" data-add-name="Gourmet Pizza" data-add-note='12"'>+ Add 12"</button>
+            <button class="add-to-order-btn add-to-order-btn--sm" data-add-name="Gourmet Pizza" data-add-note='16"'>+ Add 16"</button>
+          </div>
         </div>
         <div class="pricing-card calzone-card">
           <div class="menu-section-icon small-icon">🥙</div>
           <h3>Calzone</h3>
           <p class="calzone-desc">About half a pizza stuffed in a crescent shaped crust and baked, filled with ricotta cheese and your choice of two ingredients</p>
           <div class="calzone-price">$15.00</div>
+          <button class="add-to-order-btn" data-add-name="Calzone" data-add-note="">+ Add to Order</button>
         </div>
         <div class="pricing-card bread-card">
           <div class="menu-section-icon small-icon">🧄</div>
           <h3>Asiago Cheese Garlic Bread</h3>
           <p class="calzone-desc">A handful of warm and buttery goodness</p>
           <div class="calzone-price">$5.00</div>
+          <button class="add-to-order-btn" data-add-name="Asiago Cheese Garlic Bread" data-add-note="">+ Add to Order</button>
         </div>
       </div>
     </section>
@@ -239,6 +250,10 @@ const drinks = ['Pepsi', 'Diet Pepsi', 'Mtn Dew', 'Mug Root Beer', 'Orange Crush
           <div class="gourmet-card">
             <h3>{pizza.name}</h3>
             <p>{pizza.desc}</p>
+            <div class="gourmet-add-btns">
+              <button class="add-to-order-btn add-to-order-btn--sm" data-add-name={pizza.name} data-add-note='12"'>+ 12"</button>
+              <button class="add-to-order-btn add-to-order-btn--sm" data-add-name={pizza.name} data-add-note='16"'>+ 16"</button>
+            </div>
           </div>
         ))}
       </div>
@@ -296,6 +311,21 @@ const drinks = ['Pepsi', 'Diet Pepsi', 'Mtn Dew', 'Mug Root Beer', 'Orange Crush
     </section>
 
   </div>
+
+  <!-- ── PHONE-IN ORDER PANE ── -->
+  <div class="order-pane" id="orderPane" aria-label="Phone-in order list" hidden>
+    <div class="order-pane-header">
+      <span class="order-pane-icon" aria-hidden="true">📋</span>
+      <h2 class="order-pane-title">Phone-In Order</h2>
+      <button class="order-pane-close" id="clearOrderBtn" aria-label="Clear order and close">✕</button>
+    </div>
+    <ul class="order-pane-list" id="orderList" aria-live="polite"></ul>
+    <div class="order-pane-footer">
+      <span class="order-item-count" id="orderItemCount"></span>
+      <button class="order-clear-btn" id="clearAllBtn">Clear Order</button>
+    </div>
+  </div>
+
 </Layout>
 
 <style>
@@ -844,5 +874,357 @@ const drinks = ['Pepsi', 'Diet Pepsi', 'Mtn Dew', 'Mug Root Beer', 'Orange Crush
     .photo-strip {
       grid-template-columns: 1fr 1fr;
     }
+  }
+
+  /* ── PHONE-IN ORDER PANE ── */
+  .order-pane {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 300px;
+    background-color: var(--color-dark);
+    color: #f0e6d3;
+    display: flex;
+    flex-direction: column;
+    z-index: 200;
+    box-shadow: -4px 0 24px rgba(0,0,0,0.4);
+    overflow: hidden;
+  }
+
+  .order-pane[hidden] {
+    display: none;
+  }
+
+  .order-pane-header {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 1.2rem 1rem;
+    background-color: var(--color-dark-brown);
+    border-bottom: 2px solid var(--color-red);
+    flex-shrink: 0;
+  }
+
+  .order-pane-icon {
+    font-size: 1.4rem;
+  }
+
+  .order-pane-title {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+    flex: 1;
+  }
+
+  .order-pane-close {
+    background: none;
+    border: none;
+    color: #c8b89a;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    transition: color 0.2s, background-color 0.2s;
+    line-height: 1;
+  }
+
+  .order-pane-close:hover {
+    color: #fff;
+    background-color: rgba(255,255,255,0.1);
+  }
+
+  .order-pane-list {
+    flex: 1;
+    overflow-y: auto;
+    list-style: none;
+    padding: 0.5rem 0;
+  }
+
+  .order-pane-footer {
+    padding: 1rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    background-color: var(--color-dark-brown);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+    gap: 0.75rem;
+  }
+
+  .order-item-count {
+    font-size: 0.85rem;
+    color: #c8b89a;
+  }
+
+  .order-clear-btn {
+    background: none;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #f0e6d3;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: var(--font-body);
+  }
+
+  .order-clear-btn:hover {
+    background-color: var(--color-red);
+    border-color: var(--color-red);
+    color: #fff;
+  }
+
+  /* ── ADD TO ORDER BUTTONS ── */
+  .add-to-order-btn {
+    background: none;
+    border: 1px solid var(--color-red);
+    color: var(--color-red);
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 0.35rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 0.75rem;
+    display: inline-block;
+  }
+
+  .add-to-order-btn:hover {
+    background-color: var(--color-red);
+    color: #fff;
+  }
+
+  .add-to-order-btn--sm {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.6rem;
+    margin-top: 0;
+  }
+
+  .gourmet-add-btns,
+  .pricing-add-btns {
+    display: flex;
+    gap: 0.4rem;
+    margin-top: 0.75rem;
+  }
+
+  .gourmet-card .add-to-order-btn {
+    border-color: var(--color-gold);
+    color: var(--color-gold-light);
+  }
+
+  .gourmet-card .add-to-order-btn:hover {
+    background-color: var(--color-gold);
+    color: var(--color-dark);
+  }
+
+  @media (max-width: 768px) {
+    .order-pane {
+      top: auto;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      max-height: 50vh;
+      border-radius: 12px 12px 0 0;
+      box-shadow: 0 -4px 24px rgba(0,0,0,0.4);
+    }
+  }
+</style>
+
+<script>
+  const ORDER_KEY = 'phoneInOrder';
+
+  function getOrder(): Array<{ key: string; name: string; note: string; qty: number }> {
+    try {
+      return JSON.parse(localStorage.getItem(ORDER_KEY) ?? '[]');
+    } catch {
+      return [];
+    }
+  }
+
+  function saveOrder(items: Array<{ key: string; name: string; note: string; qty: number }>) {
+    localStorage.setItem(ORDER_KEY, JSON.stringify(items));
+  }
+
+  function addToOrder(name: string, note: string) {
+    const items = getOrder();
+    const key = note ? `${name} (${note})` : name;
+    const existing = items.find((i) => i.key === key);
+    if (existing) {
+      existing.qty++;
+    } else {
+      items.push({ key, name, note, qty: 1 });
+    }
+    saveOrder(items);
+    renderOrderPane();
+  }
+
+  function removeOrderItem(key: string) {
+    const items = getOrder();
+    const idx = items.findIndex((i) => i.key === key);
+    if (idx !== -1) {
+      if (items[idx].qty > 1) {
+        items[idx].qty--;
+      } else {
+        items.splice(idx, 1);
+      }
+    }
+    saveOrder(items);
+    renderOrderPane();
+  }
+
+  function clearOrder() {
+    saveOrder([]);
+    renderOrderPane();
+  }
+
+  function renderOrderPane() {
+    const items = getOrder();
+    const pane = document.getElementById('orderPane') as HTMLElement | null;
+    const list = document.getElementById('orderList') as HTMLUListElement | null;
+    const countEl = document.getElementById('orderItemCount') as HTMLElement | null;
+    if (!pane || !list || !countEl) return;
+
+    if (items.length === 0) {
+      pane.hidden = true;
+      return;
+    }
+
+    pane.hidden = false;
+    const totalQty = items.reduce((s, i) => s + i.qty, 0);
+    countEl.textContent = `${totalQty} item${totalQty !== 1 ? 's' : ''}`;
+
+    list.innerHTML = '';
+    items.forEach((item) => {
+      const li = document.createElement('li');
+      li.className = 'order-pane-item';
+      const details = document.createElement('div');
+      details.className = 'order-item-details';
+
+      const qty = document.createElement('span');
+      qty.className = 'order-item-qty';
+      qty.textContent = `${item.qty}\u00d7`;
+
+      const text = document.createElement('div');
+      text.className = 'order-item-text';
+
+      const nameEl = document.createElement('span');
+      nameEl.className = 'order-item-name';
+      nameEl.textContent = item.name;
+      text.appendChild(nameEl);
+
+      if (item.note) {
+        const noteEl = document.createElement('span');
+        noteEl.className = 'order-item-note';
+        noteEl.textContent = item.note;
+        text.appendChild(noteEl);
+      }
+
+      details.appendChild(qty);
+      details.appendChild(text);
+
+      const removeBtn = document.createElement('button');
+      removeBtn.className = 'order-item-remove';
+      removeBtn.setAttribute('aria-label', `Remove ${item.name}`);
+      removeBtn.textContent = '\u00d7';
+      removeBtn.addEventListener('click', () => removeOrderItem(item.key));
+
+      li.appendChild(details);
+      li.appendChild(removeBtn);
+      list.appendChild(li);
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    renderOrderPane();
+
+    document.querySelectorAll<HTMLButtonElement>('[data-add-name]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const name = btn.dataset.addName ?? '';
+        const note = btn.dataset.addNote ?? '';
+        addToOrder(name, note);
+      });
+    });
+
+    document.getElementById('clearOrderBtn')?.addEventListener('click', clearOrder);
+    document.getElementById('clearAllBtn')?.addEventListener('click', clearOrder);
+  });
+</script>
+
+<style is:global>
+  /* Styles for dynamically-created order pane items (no Astro data-cid attribute) */
+  .order-pane-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.7rem 1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    gap: 0.5rem;
+  }
+
+  .order-pane-item:last-child {
+    border-bottom: none;
+  }
+
+  .order-item-details {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .order-item-qty {
+    font-weight: 700;
+    color: var(--color-gold-light);
+    font-size: 0.9rem;
+    white-space: nowrap;
+  }
+
+  .order-item-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    min-width: 0;
+  }
+
+  .order-item-name {
+    font-size: 0.9rem;
+    color: #f0e6d3;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  .order-item-note {
+    font-size: 0.75rem;
+    color: #c8b89a;
+    font-style: italic;
+  }
+
+  .order-item-remove {
+    background: none;
+    border: none;
+    color: #7a6050;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0.1rem 0.3rem;
+    border-radius: 4px;
+    transition: color 0.2s, background-color 0.2s;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+
+  .order-item-remove:hover {
+    color: var(--color-red-light);
+    background-color: rgba(192,57,43,0.15);
   }
 </style>

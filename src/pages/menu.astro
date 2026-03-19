@@ -16,16 +16,19 @@ const salads = [
     name: 'Greek Salad',
     desc: 'Mixed lettuces, feta cheese crumbles, kalamata olives, sundried tomatoes, drizzled with olive oil',
     price: '$8.50',
+    priceNum: 8.50,
   },
   {
     name: 'Pie Hole Salad',
     desc: 'Mixed lettuces, red onion rings, bell pepper strips, sliced olives and pepperoncini',
     price: '$7.50',
+    priceNum: 7.50,
   },
   {
     name: 'Spinach Caesar',
     desc: 'Trimmed baby spinach and grated Parmesan cheese, Caesar dressing',
     price: '$7.50',
+    priceNum: 7.50,
   },
 ];
 
@@ -125,6 +128,8 @@ const drinks = ['Pepsi', 'Diet Pepsi', 'Mtn Dew', 'Mug Root Beer', 'Orange Crush
     </div>
   </section>
 
+  <div class="menu-layout">
+  <div class="menu-col">
   <div class="menu-wrapper">
 
     <!-- ── SALADS ── -->
@@ -141,7 +146,7 @@ const drinks = ['Pepsi', 'Diet Pepsi', 'Mtn Dew', 'Mug Root Beer', 'Orange Crush
               <span class="price-badge">{item.price}</span>
             </div>
             <p>{item.desc}</p>
-            <button class="add-to-order-btn" data-add-name={item.name} data-add-note="">+ Add to Order</button>
+            <button class="add-to-order-btn" data-add-name={item.name} data-add-note="" data-add-price={item.priceNum}>+ Add to Order</button>
           </div>
         ))}
       </div>
@@ -195,8 +200,8 @@ const drinks = ['Pepsi', 'Diet Pepsi', 'Mtn Dew', 'Mug Root Beer', 'Orange Crush
           </div>
           <a href="#toppings" class="toppings-link">See available toppings ↓</a>
           <div class="pricing-add-btns">
-            <button class="add-to-order-btn add-to-order-btn--sm" data-add-name="Classic Pizza" data-add-note='12"'>+ Add 12"</button>
-            <button class="add-to-order-btn add-to-order-btn--sm" data-add-name="Classic Pizza" data-add-note='16"'>+ Add 16"</button>
+            <button class="add-to-order-btn add-to-order-btn--sm" data-add-name="Classic Pizza" data-add-note='12"' data-add-price="16">+ Add 12"</button>
+            <button class="add-to-order-btn add-to-order-btn--sm" data-add-name="Classic Pizza" data-add-note='16"' data-add-price="18">+ Add 16"</button>
           </div>
         </div>
         <div class="pricing-card featured-price">
@@ -217,8 +222,8 @@ const drinks = ['Pepsi', 'Diet Pepsi', 'Mtn Dew', 'Mug Root Beer', 'Orange Crush
           </ul>
           <a href="#gourmet" class="toppings-link">See available gourmet options ↓</a>
           <div class="pricing-add-btns">
-            <button class="add-to-order-btn add-to-order-btn--sm" data-add-name="Gourmet Pizza" data-add-note='12"'>+ Add 12"</button>
-            <button class="add-to-order-btn add-to-order-btn--sm" data-add-name="Gourmet Pizza" data-add-note='16"'>+ Add 16"</button>
+            <button class="add-to-order-btn add-to-order-btn--sm" data-add-name="Gourmet Pizza" data-add-note='12"' data-add-price="19">+ Add 12"</button>
+            <button class="add-to-order-btn add-to-order-btn--sm" data-add-name="Gourmet Pizza" data-add-note='16"' data-add-price="23">+ Add 16"</button>
           </div>
         </div>
         <div class="pricing-card calzone-card">
@@ -226,14 +231,14 @@ const drinks = ['Pepsi', 'Diet Pepsi', 'Mtn Dew', 'Mug Root Beer', 'Orange Crush
           <h3>Calzone</h3>
           <p class="calzone-desc">About half a pizza stuffed in a crescent shaped crust and baked, filled with ricotta cheese and your choice of two ingredients</p>
           <div class="calzone-price">$15.00</div>
-          <button class="add-to-order-btn" data-add-name="Calzone" data-add-note="">+ Add to Order</button>
+          <button class="add-to-order-btn" data-add-name="Calzone" data-add-note="" data-add-price="15">+ Add to Order</button>
         </div>
         <div class="pricing-card bread-card">
           <div class="menu-section-icon small-icon">🧄</div>
           <h3>Asiago Cheese Garlic Bread</h3>
           <p class="calzone-desc">A handful of warm and buttery goodness</p>
           <div class="calzone-price">$5.00</div>
-          <button class="add-to-order-btn" data-add-name="Asiago Cheese Garlic Bread" data-add-note="">+ Add to Order</button>
+          <button class="add-to-order-btn" data-add-name="Asiago Cheese Garlic Bread" data-add-note="" data-add-price="5">+ Add to Order</button>
         </div>
       </div>
     </section>
@@ -251,8 +256,8 @@ const drinks = ['Pepsi', 'Diet Pepsi', 'Mtn Dew', 'Mug Root Beer', 'Orange Crush
             <h3>{pizza.name}</h3>
             <p>{pizza.desc}</p>
             <div class="gourmet-add-btns">
-              <button class="add-to-order-btn add-to-order-btn--sm" data-add-name={pizza.name} data-add-note='12"'>+ 12"</button>
-              <button class="add-to-order-btn add-to-order-btn--sm" data-add-name={pizza.name} data-add-note='16"'>+ 16"</button>
+              <button class="add-to-order-btn add-to-order-btn--sm" data-add-name={pizza.name} data-add-note='12"' data-add-price="19">+ 12"</button>
+              <button class="add-to-order-btn add-to-order-btn--sm" data-add-name={pizza.name} data-add-note='16"' data-add-price="23">+ 16"</button>
             </div>
           </div>
         ))}
@@ -310,25 +315,82 @@ const drinks = ['Pepsi', 'Diet Pepsi', 'Mtn Dew', 'Mug Root Beer', 'Orange Crush
       </div>
     </section>
 
-  </div>
+  </div><!-- /.menu-wrapper -->
+  </div><!-- /.menu-col -->
 
-  <!-- ── PHONE-IN ORDER PANE ── -->
-  <div class="order-pane" id="orderPane" aria-label="Phone-in order list" hidden>
-    <div class="order-pane-header">
-      <span class="order-pane-icon" aria-hidden="true">📋</span>
-      <h2 class="order-pane-title">Phone-In Order</h2>
-      <button class="order-pane-close" id="clearOrderBtn" aria-label="Clear order and close">✕</button>
-    </div>
-    <ul class="order-pane-list" id="orderList" aria-live="polite"></ul>
-    <div class="order-pane-footer">
-      <span class="order-item-count" id="orderItemCount"></span>
-      <button class="order-clear-btn" id="clearAllBtn">Clear Order</button>
-    </div>
-  </div>
+  <!-- ── ORDER SIDEBAR ── -->
+  <aside class="order-sidebar" id="orderSidebar">
+    <div class="order-pane" id="orderPane">
+      <div class="order-pane-header">
+        <span class="order-pane-icon" aria-hidden="true">📋</span>
+        <h2 class="order-pane-title">Your Order</h2>
+        <button class="order-pane-clear-icon" id="clearOrderBtn" aria-label="Clear order" title="Clear order" hidden>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
+        </button>
+      </div>
 
-</Layout>
+      <div class="order-empty-state" id="orderEmptyState">
+        <div class="order-empty-icon">🍕</div>
+        <p class="order-empty-title">Your order is empty</p>
+        <p class="order-empty-hint">Add items from the menu to get started</p>
+      </div>
+
+      <ul class="order-pane-list" id="orderList" aria-live="polite"></ul>
+
+      <div class="order-pane-subtotal" id="orderSubtotalSection" hidden>
+        <div class="order-subtotal-row">
+          <span class="order-subtotal-label">Subtotal</span>
+          <span class="order-subtotal-amount" id="orderSubtotal">$0.00</span>
+        </div>
+        <p class="order-tax-note">Taxes &amp; fees added when order is placed</p>
+      </div>
+
+      <div class="order-pane-footer" id="orderFooter">
+        <a href="tel:9187421200" class="order-call-btn" aria-label="Call (918) 742-1200 to place order">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.8a16 16 0 0 0 6 6l.94-.94a2 2 0 0 1 2.25-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.73 16z"/></svg>
+          <span class="order-call-text">
+            <span class="order-call-label">Call to Place Order</span>
+            <span class="order-call-number">(918) 742-1200</span>
+          </span>
+        </a>
+        <button class="order-clear-btn" id="clearAllBtn" hidden>Clear All</button>
+      </div>
+    </div>
+  </aside>
+
+  </div><!-- /.menu-layout -->
 
 <style>
+  /* ── TWO-COLUMN PAGE LAYOUT ── */
+  .menu-layout {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    align-items: start;
+    min-height: calc(100vh - 92px);
+  }
+
+  .menu-col {
+    min-width: 0;
+  }
+
+  .order-sidebar {
+    position: sticky;
+    top: 92px;
+    height: calc(100vh - 92px);
+    background-color: var(--color-dark);
+    border-left: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .order-pane {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+  }
+
   /* ── PAGE HERO ── */
   .page-hero {
     position: relative;
@@ -876,106 +938,193 @@ const drinks = ['Pepsi', 'Diet Pepsi', 'Mtn Dew', 'Mug Root Beer', 'Orange Crush
     }
   }
 
-  /* ── PHONE-IN ORDER PANE ── */
-  .order-pane {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: 300px;
-    background-color: var(--color-dark);
-    color: #f0e6d3;
-    display: flex;
-    flex-direction: column;
-    z-index: 200;
-    box-shadow: -4px 0 24px rgba(0,0,0,0.4);
-    overflow: hidden;
-  }
-
-  .order-pane[hidden] {
-    display: none;
-  }
-
+  /* ── ORDER PANE (in sidebar) ── */
   .order-pane-header {
     display: flex;
     align-items: center;
     gap: 0.6rem;
-    padding: 1.2rem 1rem;
+    padding: 1.1rem 1rem;
     background-color: var(--color-dark-brown);
     border-bottom: 2px solid var(--color-red);
     flex-shrink: 0;
   }
 
   .order-pane-icon {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
   }
 
   .order-pane-title {
     font-family: var(--font-display);
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     font-weight: 700;
     color: #fff;
     margin: 0;
     flex: 1;
   }
 
-  .order-pane-close {
+  .order-pane-clear-icon {
     background: none;
     border: none;
-    color: #c8b89a;
-    font-size: 1.2rem;
+    color: #7a6050;
     cursor: pointer;
-    padding: 0.2rem 0.4rem;
+    padding: 0.3rem;
     border-radius: 4px;
+    display: flex;
+    align-items: center;
     transition: color 0.2s, background-color 0.2s;
-    line-height: 1;
   }
 
-  .order-pane-close:hover {
-    color: #fff;
-    background-color: rgba(255,255,255,0.1);
+  .order-pane-clear-icon:hover {
+    color: var(--color-red-light);
+    background-color: rgba(192,57,43,0.15);
+  }
+
+  /* Empty state */
+  .order-empty-state {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    gap: 0.5rem;
+    color: #7a6050;
+  }
+
+  .order-empty-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    opacity: 0.5;
+  }
+
+  .order-empty-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #c8b89a;
+  }
+
+  .order-empty-hint {
+    font-size: 0.82rem;
+    color: #7a6050;
+    line-height: 1.5;
   }
 
   .order-pane-list {
     flex: 1;
     overflow-y: auto;
     list-style: none;
-    padding: 0.5rem 0;
+    padding: 0;
+    min-height: 0;
   }
 
-  .order-pane-footer {
-    padding: 1rem;
+  /* Subtotal area */
+  .order-pane-subtotal {
+    padding: 0.85rem 1rem;
     border-top: 1px solid rgba(255,255,255,0.1);
+    background-color: rgba(0,0,0,0.2);
+    flex-shrink: 0;
+  }
+
+  .order-subtotal-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.3rem;
+  }
+
+  .order-subtotal-label {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #f0e6d3;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .order-subtotal-amount {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--color-gold-light);
+  }
+
+  .order-tax-note {
+    font-size: 0.72rem;
+    color: #7a6050;
+    font-style: italic;
+  }
+
+  /* Footer: call button + clear */
+  .order-pane-footer {
+    padding: 0.85rem 1rem;
     background-color: var(--color-dark-brown);
+    border-top: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    flex-shrink: 0;
+  }
+
+  .order-call-btn {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    flex-shrink: 0;
     gap: 0.75rem;
+    background: linear-gradient(135deg, var(--color-red-dark) 0%, var(--color-red) 100%);
+    color: #fff !important;
+    border-radius: 6px;
+    padding: 0.85rem 1rem;
+    text-decoration: none;
+    transition: filter 0.2s, transform 0.15s;
+    font-family: var(--font-body);
   }
 
-  .order-item-count {
-    font-size: 0.85rem;
-    color: #c8b89a;
+  .order-call-btn:hover {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+  }
+
+  .order-call-btn svg {
+    flex-shrink: 0;
+  }
+
+  .order-call-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+  }
+
+  .order-call-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    opacity: 0.9;
+  }
+
+  .order-call-number {
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: var(--font-display);
   }
 
   .order-clear-btn {
     background: none;
-    border: 1px solid rgba(255,255,255,0.2);
-    color: #f0e6d3;
-    font-size: 0.8rem;
+    border: 1px solid rgba(255,255,255,0.15);
+    color: #c8b89a;
+    font-size: 0.78rem;
     font-weight: 600;
     letter-spacing: 0.05em;
     text-transform: uppercase;
-    padding: 0.4rem 0.8rem;
+    padding: 0.45rem 0.8rem;
     border-radius: 4px;
     cursor: pointer;
     transition: all 0.2s;
     font-family: var(--font-body);
+    width: 100%;
   }
 
   .order-clear-btn:hover {
-    background-color: var(--color-red);
+    background-color: rgba(192,57,43,0.2);
     border-color: var(--color-red);
     color: #fff;
   }
@@ -1026,16 +1175,34 @@ const drinks = ['Pepsi', 'Diet Pepsi', 'Mtn Dew', 'Mug Root Beer', 'Orange Crush
     color: var(--color-dark);
   }
 
-  @media (max-width: 768px) {
-    .order-pane {
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .menu-layout {
+      grid-template-columns: 1fr;
+    }
+
+    .order-sidebar {
+      position: fixed;
       top: auto;
-      right: 0;
       bottom: 0;
       left: 0;
-      width: 100%;
-      max-height: 50vh;
-      border-radius: 12px 12px 0 0;
-      box-shadow: 0 -4px 24px rgba(0,0,0,0.4);
+      right: 0;
+      height: auto;
+      max-height: 55vh;
+      border-left: none;
+      border-top: 2px solid var(--color-red);
+      border-radius: 16px 16px 0 0;
+      box-shadow: 0 -4px 24px rgba(0,0,0,0.5);
+      z-index: 200;
+      display: none;
+    }
+
+    .order-sidebar.has-items {
+      display: flex;
+    }
+
+    .order-pane-footer {
+      padding-bottom: max(0.85rem, env(safe-area-inset-bottom));
     }
   }
 </style>
@@ -1043,7 +1210,15 @@ const drinks = ['Pepsi', 'Diet Pepsi', 'Mtn Dew', 'Mug Root Beer', 'Orange Crush
 <script>
   const ORDER_KEY = 'phoneInOrder';
 
-  function getOrder(): Array<{ key: string; name: string; note: string; qty: number }> {
+  interface OrderItem {
+    key: string;
+    name: string;
+    note: string;
+    qty: number;
+    price: number;
+  }
+
+  function getOrder(): OrderItem[] {
     try {
       return JSON.parse(localStorage.getItem(ORDER_KEY) ?? '[]');
     } catch {
@@ -1051,33 +1226,38 @@ const drinks = ['Pepsi', 'Diet Pepsi', 'Mtn Dew', 'Mug Root Beer', 'Orange Crush
     }
   }
 
-  function saveOrder(items: Array<{ key: string; name: string; note: string; qty: number }>) {
+  function saveOrder(items: OrderItem[]) {
     localStorage.setItem(ORDER_KEY, JSON.stringify(items));
   }
 
-  function addToOrder(name: string, note: string) {
+  function addToOrder(name: string, note: string, price: number) {
     const items = getOrder();
     const key = note ? `${name} (${note})` : name;
     const existing = items.find((i) => i.key === key);
     if (existing) {
       existing.qty++;
     } else {
-      items.push({ key, name, note, qty: 1 });
+      items.push({ key, name, note, qty: 1, price });
     }
     saveOrder(items);
     renderOrderPane();
   }
 
-  function removeOrderItem(key: string) {
+  function changeQty(key: string, delta: number) {
     const items = getOrder();
     const idx = items.findIndex((i) => i.key === key);
     if (idx !== -1) {
-      if (items[idx].qty > 1) {
-        items[idx].qty--;
-      } else {
+      items[idx].qty += delta;
+      if (items[idx].qty <= 0) {
         items.splice(idx, 1);
       }
     }
+    saveOrder(items);
+    renderOrderPane();
+  }
+
+  function deleteOrderItem(key: string) {
+    const items = getOrder().filter((i) => i.key !== key);
     saveOrder(items);
     renderOrderPane();
   }
@@ -1087,58 +1267,115 @@ const drinks = ['Pepsi', 'Diet Pepsi', 'Mtn Dew', 'Mug Root Beer', 'Orange Crush
     renderOrderPane();
   }
 
+  function fmt(amount: number) {
+    return `$${amount.toFixed(2)}`;
+  }
+
   function renderOrderPane() {
     const items = getOrder();
-    const pane = document.getElementById('orderPane') as HTMLElement | null;
+    const sidebar = document.getElementById('orderSidebar') as HTMLElement | null;
     const list = document.getElementById('orderList') as HTMLUListElement | null;
-    const countEl = document.getElementById('orderItemCount') as HTMLElement | null;
-    if (!pane || !list || !countEl) return;
+    const emptyState = document.getElementById('orderEmptyState') as HTMLElement | null;
+    const subtotalSection = document.getElementById('orderSubtotalSection') as HTMLElement | null;
+    const subtotalEl = document.getElementById('orderSubtotal') as HTMLElement | null;
+    const clearAllBtn = document.getElementById('clearAllBtn') as HTMLElement | null;
+    const clearIcon = document.getElementById('clearOrderBtn') as HTMLElement | null;
+    if (!sidebar || !list || !emptyState || !subtotalSection || !subtotalEl) return;
 
-    if (items.length === 0) {
-      pane.hidden = true;
+    const hasItems = items.length > 0;
+
+    // Mobile: toggle sidebar visibility
+    sidebar.classList.toggle('has-items', hasItems);
+
+    // Show/hide sections based on whether there are items
+    emptyState.hidden = hasItems;
+    list.hidden = !hasItems;
+    subtotalSection.hidden = !hasItems;
+    // The footer (call button) is always visible; only toggle Clear All and the trash icon
+    if (clearAllBtn) clearAllBtn.hidden = !hasItems;
+    if (clearIcon) clearIcon.hidden = !hasItems;
+
+    if (!hasItems) {
+      list.innerHTML = '';
       return;
     }
 
-    pane.hidden = false;
-    const totalQty = items.reduce((s, i) => s + i.qty, 0);
-    countEl.textContent = `${totalQty} item${totalQty !== 1 ? 's' : ''}`;
+    // Compute subtotal
+    const subtotal = items.reduce((s, i) => s + i.price * i.qty, 0);
+    subtotalEl.textContent = fmt(subtotal);
 
     list.innerHTML = '';
     items.forEach((item) => {
       const li = document.createElement('li');
       li.className = 'order-pane-item';
-      const details = document.createElement('div');
-      details.className = 'order-item-details';
 
-      const qty = document.createElement('span');
-      qty.className = 'order-item-qty';
-      qty.textContent = `${item.qty}\u00d7`;
+      // Price guard: only show price-related UI when a price is known
+      const hasPrice = item.price > 0;
 
-      const text = document.createElement('div');
-      text.className = 'order-item-text';
+      // Item info (name + note)
+      const info = document.createElement('div');
+      info.className = 'order-item-info';
 
       const nameEl = document.createElement('span');
       nameEl.className = 'order-item-name';
       nameEl.textContent = item.name;
-      text.appendChild(nameEl);
+      info.appendChild(nameEl);
 
       if (item.note) {
         const noteEl = document.createElement('span');
         noteEl.className = 'order-item-note';
         noteEl.textContent = item.note;
-        text.appendChild(noteEl);
+        info.appendChild(noteEl);
       }
 
-      details.appendChild(qty);
-      details.appendChild(text);
+      if (hasPrice) {
+        const unitEl = document.createElement('span');
+        unitEl.className = 'order-item-unit-price';
+        unitEl.textContent = `${fmt(item.price)} each`;
+        info.appendChild(unitEl);
+      }
 
+      // Qty controls
+      const controls = document.createElement('div');
+      controls.className = 'order-item-controls';
+
+      const decBtn = document.createElement('button');
+      decBtn.className = 'order-qty-btn';
+      decBtn.setAttribute('aria-label', `Decrease quantity of ${item.name}`);
+      decBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/></svg>`;
+      decBtn.addEventListener('click', () => changeQty(item.key, -1));
+
+      const qtyEl = document.createElement('span');
+      qtyEl.className = 'order-item-qty';
+      qtyEl.textContent = String(item.qty);
+
+      const incBtn = document.createElement('button');
+      incBtn.className = 'order-qty-btn';
+      incBtn.setAttribute('aria-label', `Increase quantity of ${item.name}`);
+      incBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>`;
+      incBtn.addEventListener('click', () => changeQty(item.key, 1));
+
+      controls.appendChild(decBtn);
+      controls.appendChild(qtyEl);
+      controls.appendChild(incBtn);
+
+      // Item subtotal (only shown when a price is known)
+      const itemSubtotal = document.createElement('span');
+      itemSubtotal.className = 'order-item-subtotal';
+      if (hasPrice) {
+        itemSubtotal.textContent = fmt(item.price * item.qty);
+      }
+
+      // Remove button (trash icon)
       const removeBtn = document.createElement('button');
       removeBtn.className = 'order-item-remove';
-      removeBtn.setAttribute('aria-label', `Remove ${item.name}`);
-      removeBtn.textContent = '\u00d7';
-      removeBtn.addEventListener('click', () => removeOrderItem(item.key));
+      removeBtn.setAttribute('aria-label', `Remove ${item.name} from order`);
+      removeBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>`;
+      removeBtn.addEventListener('click', () => deleteOrderItem(item.key));
 
-      li.appendChild(details);
+      li.appendChild(info);
+      li.appendChild(controls);
+      li.appendChild(itemSubtotal);
       li.appendChild(removeBtn);
       list.appendChild(li);
     });
@@ -1151,7 +1388,8 @@ const drinks = ['Pepsi', 'Diet Pepsi', 'Mtn Dew', 'Mug Root Beer', 'Orange Crush
       btn.addEventListener('click', () => {
         const name = btn.dataset.addName ?? '';
         const note = btn.dataset.addNote ?? '';
-        addToOrder(name, note);
+        const price = parseFloat(btn.dataset.addPrice ?? '0');
+        addToOrder(name, note, price);
       });
     });
 
@@ -1161,36 +1399,24 @@ const drinks = ['Pepsi', 'Diet Pepsi', 'Mtn Dew', 'Mug Root Beer', 'Orange Crush
 </script>
 
 <style is:global>
+  /* Ensure the HTML `hidden` attribute always overrides CSS display properties */
+  [hidden] { display: none !important; }
+
   /* Styles for dynamically-created order pane items (no Astro data-cid attribute) */
   .order-pane-item {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr auto auto auto;
     align-items: center;
-    justify-content: space-between;
-    padding: 0.7rem 1rem;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-    gap: 0.5rem;
+    gap: 0.4rem;
+    padding: 0.65rem 0.85rem;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
   }
 
   .order-pane-item:last-child {
     border-bottom: none;
   }
 
-  .order-item-details {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.5rem;
-    flex: 1;
-    min-width: 0;
-  }
-
-  .order-item-qty {
-    font-weight: 700;
-    color: var(--color-gold-light);
-    font-size: 0.9rem;
-    white-space: nowrap;
-  }
-
-  .order-item-text {
+  .order-item-info {
     display: flex;
     flex-direction: column;
     gap: 0.1rem;
@@ -1198,33 +1424,94 @@ const drinks = ['Pepsi', 'Diet Pepsi', 'Mtn Dew', 'Mug Root Beer', 'Orange Crush
   }
 
   .order-item-name {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: #f0e6d3;
     font-weight: 600;
     line-height: 1.3;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .order-item-note {
-    font-size: 0.75rem;
-    color: #c8b89a;
+    font-size: 0.72rem;
+    color: var(--color-gold-light);
     font-style: italic;
   }
 
+  .order-item-unit-price {
+    font-size: 0.7rem;
+    color: #7a6050;
+  }
+
+  /* Qty controls */
+  .order-item-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+    background: rgba(255,255,255,0.06);
+    border-radius: 20px;
+    padding: 0.2rem 0.35rem;
+  }
+
+  .order-qty-btn {
+    background: none;
+    border: none;
+    color: #c8b89a;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    transition: color 0.15s, background-color 0.15s;
+    flex-shrink: 0;
+    padding: 0;
+  }
+
+  .order-qty-btn:hover {
+    color: #fff;
+    background-color: rgba(255,255,255,0.12);
+  }
+
+  .order-item-qty {
+    font-weight: 700;
+    color: var(--color-gold-light);
+    font-size: 0.85rem;
+    min-width: 18px;
+    text-align: center;
+  }
+
+  /* Per-item subtotal */
+  .order-item-subtotal {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #f0e6d3;
+    white-space: nowrap;
+    min-width: 44px;
+    text-align: right;
+  }
+
+  /* Remove (trash) button */
   .order-item-remove {
     background: none;
     border: none;
-    color: #7a6050;
-    font-size: 1rem;
+    color: #5a4535;
     cursor: pointer;
-    padding: 0.1rem 0.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
     border-radius: 4px;
     transition: color 0.2s, background-color 0.2s;
     flex-shrink: 0;
-    line-height: 1;
+    padding: 0;
   }
 
   .order-item-remove:hover {
     color: var(--color-red-light);
-    background-color: rgba(192,57,43,0.15);
+    background-color: rgba(192,57,43,0.18);
   }
 </style>

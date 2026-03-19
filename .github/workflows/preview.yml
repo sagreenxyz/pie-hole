@@ -2,7 +2,7 @@ name: Deploy Preview to GitHub Pages
 
 on:
   push:
-    branches: ["copilot/add-qr-code-for-contact"]
+    branches: ["copilot/**"]
   workflow_dispatch:
 
 permissions:

@@ -6,9 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 concurrency:
   # Share the 'pages' group with deploy.yml to prevent concurrent GitHub Pages deployments.
@@ -24,35 +22,17 @@ jobs:
       # Required for GitHub Actions to use Node.js 24 compatible JavaScript actions
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     steps:
-      - name: Checkout main branch (production site)
-        uses: actions/checkout@v4
-        with:
-          ref: main
-          path: main-site
-
       - name: Checkout feature branch (preview site)
         uses: actions/checkout@v4
-        with:
-          path: preview-site
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
-          cache-dependency-path: main-site/package-lock.json
 
-      - name: Install dependencies (production)
+      - name: Install dependencies
         run: npm ci
-        working-directory: main-site
-
-      - name: Install dependencies (preview)
-        run: npm ci
-        working-directory: preview-site
-
-      - name: Build production site
-        run: npm run build
-        working-directory: main-site
 
       - name: Build preview site (base /pie-hole/preview)
         run: |
@@ -64,26 +44,13 @@ jobs:
           });
           EOF
           npm run build
-        working-directory: preview-site
 
-      - name: Merge preview into production artifact
-        run: |
-          mkdir -p main-site/dist/preview
-          cp -r preview-site/dist/* main-site/dist/preview/
-
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Deploy preview to gh-pages branch under preview/
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          path: main-site/dist
-
-  deploy:
-    name: Deploy
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          publish_branch: gh-pages
+          destination_dir: preview
+          # keep_files preserves the production root while adding/updating preview/
+          keep_files: true

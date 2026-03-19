@@ -34,23 +34,13 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build preview site (base /pie-hole/preview)
-        run: |
-          cat > astro.config.mjs << 'EOF'
-          import { defineConfig } from 'astro/config';
-          export default defineConfig({
-            site: 'https://sagreenxyz.github.io',
-            base: '/pie-hole/preview',
-          });
-          EOF
-          npm run build
+      - name: Build preview site (base /pie-hole)
+        run: npm run build
 
-      - name: Deploy preview to gh-pages branch under preview/
+      - name: Deploy preview to gh-pages branch root
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
           publish_branch: gh-pages
-          destination_dir: preview
-          # keep_files preserves the production root while adding/updating preview/
           keep_files: true

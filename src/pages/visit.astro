@@ -1,0 +1,167 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const phoneNumber = '+19187421200';
+const phoneDisplay = '(918) 742-1200';
+const plusCode = '42RX+5H Tulsa, Oklahoma';
+const googleMapsUrl = `https://maps.google.com/?q=${encodeURIComponent(plusCode)}`;
+---
+
+<Layout
+  title="Visit Pie Hole Pizzeria | Call or Get Directions"
+  description="Call Pie Hole Pizzeria at (918) 742-1200 or get GPS directions via Google Maps. Works on Android and iPhone."
+>
+  <section class="visit-page">
+    <div class="visit-container">
+      <img
+        src="https://images.squarespace-cdn.com/content/v1/57510c9a4d088e539edafc3d/1466567499961-ME2HB1QMYW0WG0OL2TWK/ThePieHolePizzeriaLogo.png?format=750w"
+        alt="Pie Hole Pizzeria"
+        class="visit-logo"
+      />
+      <h1 class="visit-title">Visit Us</h1>
+      <p class="visit-address">2708 E 15th St, Tulsa, OK 74104</p>
+
+      <div class="visit-actions">
+        <a href={`tel:${phoneNumber}`} class="visit-btn visit-btn-call">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+          </svg>
+          <span class="visit-btn-text">Call Us</span>
+          <span class="visit-btn-sub">{phoneDisplay}</span>
+        </a>
+
+        <a
+          href={googleMapsUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="visit-btn visit-btn-maps"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+          <span class="visit-btn-text">Get Directions</span>
+          <span class="visit-btn-sub">Open in Google Maps</span>
+        </a>
+      </div>
+
+      <p class="visit-note">Works on Android &amp; iPhone</p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .visit-page {
+    min-height: calc(100vh - 200px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-cream);
+    padding: 3rem 1.5rem;
+  }
+
+  .visit-container {
+    max-width: 480px;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+  }
+
+  .visit-logo {
+    height: 100px;
+    width: auto;
+  }
+
+  .visit-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 6vw, 3rem);
+    font-weight: 900;
+    color: var(--color-dark);
+    line-height: 1.1;
+    margin: 0;
+  }
+
+  .visit-address {
+    font-size: 1rem;
+    color: var(--color-text-light);
+    margin: 0;
+  }
+
+  .visit-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    margin-top: 0.8rem;
+  }
+
+  .visit-btn {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.2rem 2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-family: var(--font-body);
+    font-weight: 700;
+    transition: transform 0.15s, box-shadow 0.15s;
+    text-align: left;
+  }
+
+  .visit-btn:active {
+    transform: scale(0.97);
+  }
+
+  .visit-btn-call {
+    background-color: var(--color-red);
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(192, 57, 43, 0.35);
+  }
+
+  .visit-btn-call:hover {
+    background-color: var(--color-red-light);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(192, 57, 43, 0.45);
+  }
+
+  .visit-btn-maps {
+    background-color: #1a73e8;
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(26, 115, 232, 0.35);
+  }
+
+  .visit-btn-maps:hover {
+    background-color: #1558b0;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(26, 115, 232, 0.45);
+  }
+
+  .visit-btn svg {
+    flex-shrink: 0;
+    opacity: 0.95;
+  }
+
+  .visit-btn-text {
+    font-size: 1.15rem;
+    display: block;
+    line-height: 1.2;
+  }
+
+  .visit-btn-sub {
+    font-size: 0.82rem;
+    display: block;
+    opacity: 0.85;
+    font-weight: 400;
+    margin-top: 0.1rem;
+  }
+
+  .visit-note {
+    font-size: 0.8rem;
+    color: var(--color-text-light);
+    letter-spacing: 0.05em;
+    margin-top: 0.4rem;
+  }
+</style>

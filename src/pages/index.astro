@@ -1,9 +1,20 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import QRCode from 'qrcode';
 
 const base = import.meta.env.BASE_URL.endsWith('/')
   ? import.meta.env.BASE_URL
   : import.meta.env.BASE_URL + '/';
+
+const siteOrigin = (import.meta.env.SITE || 'https://sagreenxyz.github.io').replace(/\/$/, '');
+// base already ends with '/' (ensured above), so visitUrl is correctly formed: origin + /pie-hole/ + visit
+const visitUrl = `${siteOrigin}${base}visit`;
+const qrSvg = await QRCode.toString(visitUrl, {
+  type: 'svg',
+  margin: 1,
+  color: { dark: '#c0392b', light: '#ffffff' },
+  width: 80,
+});
 
 const photos = {
   hero:    'https://images.squarespace-cdn.com/content/v1/57510c9a4d088e539edafc3d/1464939633089-08MRPAYBJ1OKYBU0M02P/1.JPG?format=2500w',
@@ -72,6 +83,13 @@ const photos = {
           <span class="order-label">Delivery &amp; Take Out</span>
           <span class="order-value">Mon–Thu 11–9 &nbsp;|&nbsp; Fri–Sat 11–10 &nbsp;|&nbsp; Sun 1–6</span>
         </div>
+      </div>
+      <div class="order-divider"></div>
+      <div class="order-item order-item-qr">
+        <a href={`${base}visit`} class="qr-link" aria-label="Scan QR code to call us or get directions">
+          <Fragment set:html={qrSvg} />
+          <span class="order-label qr-caption">Scan to Call or Navigate</span>
+        </a>
       </div>
     </div>
   </section>
@@ -416,6 +434,35 @@ const photos = {
     width: 1px;
     height: 40px;
     background-color: rgba(255,255,255,0.3);
+  }
+
+  .order-item-qr {
+    align-items: center;
+  }
+
+  .qr-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    text-decoration: none;
+    color: #fff;
+    transition: opacity 0.2s;
+  }
+
+  .qr-link:hover {
+    opacity: 0.85;
+  }
+
+  .qr-link svg {
+    width: 80px;
+    height: 80px;
+    border-radius: 4px;
+    display: block;
+  }
+
+  .qr-caption {
+    text-align: center;
   }
 
   /* ── INTRO ── */

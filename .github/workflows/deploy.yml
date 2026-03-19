@@ -40,6 +40,6 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
           publish_branch: gh-pages
-          # Full replacement on every main-branch deploy keeps the production
-          # root clean; preview/ is re-added by the preview workflow afterwards.
-          keep_files: false
+          # keep_files: true preserves the preview/ subdirectory so it is not
+          # wiped on every main-branch deploy.
+          keep_files: true
